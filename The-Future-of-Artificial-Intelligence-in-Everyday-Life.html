@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Newdich Technology | Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffd5;
+      --bg-dark: #0f2027;
+      --bg-light: #1c2e3f;
+      --text-light: #d8f3ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: var(--primary);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .blog-card {
+      background: var(--bg-light);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      animation: fadeInUp 1s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .blog-card h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 1rem;
+      color: #e0e0e0;
+    }
+
+    .blog-card p strong {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #333;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Newdich Tech Blog</h1>
+    <p>Insights, Trends & Tutorials in Technology and Software Engineering</p>
+  </header>
+
+  <section class="blog-container" id="blogPosts">
+    <!-- Blog posts will be injected here -->
+  </section>
+
+  <footer>
+    &copy; 2025 Newdich Technology. All rights reserved.
+  </footer>
+
+  <script>
+    const blogPosts = [
+      {
+        title: "The Future of Artificial Intelligence in Everyday Life",
+        content: `
+          Artificial Intelligence (AI) is no longer a futuristic concept – it’s deeply integrated into our daily routines, often in ways we don’t even notice. From the virtual assistant in your smartphone to the recommendation systems on Netflix, AI is quietly transforming how we live, work, and connect.
+
+          <br><br><strong>1. AI in Personal Assistants:</strong><br>
+          Virtual assistants like Siri, Alexa, and Google Assistant are becoming smarter by the day. They can manage our schedules, play music, set reminders, and even control smart home devices. The future will bring even more natural conversations, proactive suggestions, and seamless multitasking across devices.
+
+          <br><br><strong>2. Smart Homes and IoT:</strong><br>
+          AI will be the brain behind smart homes. From energy-efficient lighting systems that learn your habits to refrigerators that order groceries when you're low on supplies, the integration of AI with IoT will make homes more efficient, secure, and personalized.
+
+          <br><br><strong>3. Healthcare Innovations:</strong><br>
+          In healthcare, AI is revolutionizing diagnostics and treatment. Algorithms are now capable of detecting diseases like cancer, Alzheimer’s, and heart conditions earlier than ever before. In the near future, AI-driven wearable devices will monitor real-time health data, alerting users and doctors to potential risks instantly.
+
+          <br><br><strong>4. Autonomous Transportation:</strong><br>
+          Self-driving cars are being tested and improved at a rapid pace. Companies like Tesla, Waymo, and Uber are pushing boundaries. Soon, AI-powered vehicles will reduce traffic accidents, improve fuel efficiency, and transform commuting as we know it.
+
+          <br><br><strong>5. Education and Learning:</strong><br>
+          AI is personalizing education by adapting content to students' learning styles and speeds. Intelligent tutoring systems, language learning bots, and predictive analytics will guide learners toward mastery more efficiently than traditional methods.
+
+          <br><br><strong>6. Workplace and Productivity:</strong><br>
+          In the corporate world, AI is automating routine tasks, enabling workers to focus on strategic and creative endeavors. AI tools handle data analysis, customer service, HR recruitment, and even legal documentation review – saving time and increasing efficiency.
+
+          <br><br><strong>7. Entertainment and Media:</strong><br>
+          From personalized content recommendations to AI-generated music and artwork, the entertainment industry is experiencing an AI renaissance. AI is helping creators push boundaries and deliver hyper-targeted experiences to users.
+
+          <br><br><strong>8. Ethical AI and Challenges Ahead:</strong><br>
+          As AI becomes more embedded in life, discussions around ethics, privacy, and bias are intensifying. Ensuring fairness, transparency, and accountability will be key to responsible AI development. The future of AI must balance innovation with inclusivity and regulation.
+
+          <br><br><strong>Conclusion:</strong><br>
+          The future of AI is incredibly promising. It will redefine convenience, safety, and productivity in our daily lives. While challenges remain, the potential benefits are transformative. As we step into an AI-powered world, continuous learning and adaptation will be essential — both for humans and the machines we build.
+        `
+      }
+    ];
+
+    const blogContainer = document.getElementById('blogPosts');
+
+    blogPosts.forEach(post => {
+      const card = document.createElement('div');
+      card.className = 'blog-card';
+      card.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+      `;
+      blogContainer.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

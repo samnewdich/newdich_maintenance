@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Newdich Technology | Building Scalable APIs with ASP.NET Core</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffd5;
+      --bg-dark: #0f2027;
+      --bg-light: #1c2e3f;
+      --text-light: #d8f3ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: var(--primary);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .blog-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg-light);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      animation: fadeInUp 1s ease;
+    }
+
+    .blog-container h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .blog-container p {
+      margin-bottom: 1.2rem;
+      color: #e0e0e0;
+    }
+
+    .blog-container p strong {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #333;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Newdich Tech Blog</h1>
+    <p>Insights, Trends & Tutorials in Technology and Software Engineering</p>
+  </header>
+
+  <section class="blog-container">
+    <h2>Building Scalable APIs with ASP.NET Core</h2>
+    <p>
+      ASP.NET Core has become one of the most powerful frameworks for building modern, scalable APIs. Whether you're developing microservices, enterprise applications, or mobile backends, ASP.NET Core provides the performance and flexibility required to grow with your application.
+    </p>
+
+    <p>
+      <strong>1. Why ASP.NET Core for API Development?</strong><br>
+      ASP.NET Core is cross-platform, lightweight, and open-source. It offers fast performance, built-in dependency injection, middleware-based request handling, and strong support for RESTful standards. It supports both monolithic and microservices architectures.
+    </p>
+
+    <p>
+      <strong>2. Structuring Your API for Scalability</strong><br>
+      Use a clean architecture pattern such as Onion Architecture or Clean Architecture. Separate concerns into layers:
+      <ul>
+        <li><strong>API Layer:</strong> Controllers and routes</li>
+        <li><strong>Application Layer:</strong> Business logic</li>
+        <li><strong>Infrastructure Layer:</strong> Data access and external services</li>
+        <li><strong>Domain Layer:</strong> Core entities and interfaces</li>
+      </ul>
+      This promotes testability, maintainability, and scalability.
+    </p>
+
+    <p>
+      <strong>3. Using Entity Framework Core</strong><br>
+      EF Core is a lightweight, extensible ORM that works well with ASP.NET Core. It supports LINQ, migrations, and multiple databases. Use asynchronous queries like <code>await _dbContext.Users.ToListAsync()</code> to improve performance and prevent thread blocking.
+    </p>
+
+    <p>
+      <strong>4. Configuring Dependency Injection</strong><br>
+      ASP.NET Core has a built-in IoC container. Use interfaces and register services in <code>Program.cs</code> or <code>Startup.cs</code>:
+      <pre>
+services.AddScoped&lt;IUserService, UserService&gt;();
+      </pre>
+      This makes your application more modular and testable.
+    </p>
+
+    <p>
+      <strong>5. Implementing Pagination and Filtering</strong><br>
+      For APIs with large datasets, implement pagination to reduce payload size:
+      <pre>
+GET /api/users?page=1&pageSize=10
+      </pre>
+      Combine with search and filter options to improve usability and performance.
+    </p>
+
+    <p>
+      <strong>6. Middleware and Cross-Cutting Concerns</strong><br>
+      ASP.NET Core middleware allows adding logic in the request pipeline. Use it for:
+      <ul>
+        <li>Logging and telemetry</li>
+        <li>Error handling (ExceptionMiddleware)</li>
+        <li>Authentication/Authorization (JWT, Identity)</li>
+        <li>CORS configuration</li>
+      </ul>
+    </p>
+
+    <p>
+      <strong>7. Caching for Performance</strong><br>
+      Use in-memory caching for frequently accessed data. For distributed environments, use Redis. ASP.NET Core supports output caching and response caching via middleware.
+    </p>
+
+    <p>
+      <strong>8. Asynchronous Programming</strong><br>
+      Use async/await patterns in controllers and services. This allows non-blocking I/O operations and improves scalability:
+      <pre>
+public async Task&lt;IActionResult&gt; GetUser(int id)
+{
+    var user = await _userService.GetByIdAsync(id);
+    return Ok(user);
+}
+      </pre>
+    </p>
+
+    <p>
+      <strong>9. API Versioning</strong><br>
+      As your API grows, versioning helps avoid breaking changes. Use:
+      <ul>
+        <li>URL-based versioning: <code>/api/v1/products</code></li>
+        <li>Header-based or query string versioning</li>
+      </ul>
+      Configure using <code>Microsoft.AspNetCore.Mvc.Versioning</code> package.
+    </p>
+
+    <p>
+      <strong>10. Securing Your API</strong><br>
+      Use JWT tokens, API keys, and OAuth2 for authentication. Validate all input and guard endpoints using authorization attributes. Store secrets in <code>appsettings.json</code> or environment variables.
+    </p>
+
+    <p>
+      <strong>11. Logging and Monitoring</strong><br>
+      Use Serilog or NLog to log requests, errors, and application events. Integrate with cloud tools like Application Insights or AWS CloudWatch for monitoring and diagnostics.
+    </p>
+
+    <p>
+      <strong>12. Hosting and Scaling</strong><br>
+      Host APIs on Kestrel, IIS, Docker, or Kubernetes. Use load balancers, horizontal scaling, and cloud services like Azure App Service or AWS Elastic Beanstalk to manage traffic and scale on demand.
+    </p>
+
+    <p>
+      <strong>Conclusion</strong><br>
+      ASP.NET Core gives developers all the tools they need to build robust and scalable APIs. By following best practices in architecture, performance optimization, security, and deployment, you can build APIs that power high-performance applications at scale.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Newdich Technology. All rights reserved.
+  </footer>
+
+</body>
+</html>
