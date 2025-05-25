@@ -1,0 +1,611 @@
+/*IMPORT THE BOOSTRAP ICON*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"); 
+
+html, body{margin: 0px; overflow-x: hidden; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+/*.body-container{display: flex; flex-direction: column; min-height: 100vh;}*/
+.header{padding: 5px; min-height: 56px;}
+/*.header-fixed{position: fixed; top: 0; left: 0; width: 99.5%; z-index: 1; padding: 5px; min-height: 120px; max-height: 120px; overflow: auto;}*/
+.footer{position: sticky; position: -webkit-sticky; margin-top: 10px; padding: 5px;}
+#footer{
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    left: 0;
+    min-height: 60px;
+    width: 100%;
+    z-index: 1;
+}
+
+.icon-style{
+    font-size: 24px;
+    color:#565453;
+}
+
+#chat-field{
+    width: 100%;
+    min-height: 25px;
+    max-height: 200px;
+    transition: height 0.2s;
+    background-color:white;
+    resize:none;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+}
+/*menu-fixed CAN BE USED BOTH INSIDE header CLASS AND header-fixed CLASS AND JAVASCRIPT OR JQUERY CAN BE USED TO OPEN AND CLOSE THE MENU*/
+.hider{display: none;}
+
+/*BUTTONS*/
+.btn{padding: 7px; border:none; border-radius: 5px; cursor: pointer;}
+.btn-full{padding: 7px; width: 100%; border: none; border-radius: 5px; cursor: pointer;}
+.btn-big{padding: 10px; min-height: 50px; cursor: pointer; border: none; border-radius: 5px;}
+.btn-big-full{padding: 10px; min-height: 50px; cursor: pointer; border: none; border-radius: 5px; width: 100%;}
+
+/*CIRCLE, IF YOU MUST SET SIZE TO CIRCLE, THE HEIGHT AND WIDTH MUST HAVE THESAME VALUE*/
+.circle{border: none; border-radius: 50%; padding: 10px;}
+
+/*INPUTS*/
+.input{height: 35px; width: 100%; font-size: 16px; background-color: white; color: black; border: none; border-color: none; border-radius: 5px; border-style: solid; border-width: thin;}
+.txtarea{width: 100%; min-height: 200px; resize: none;}
+
+/*SHADOWS*/
+.heavy-shadow{box-shadow: 20px 40px 80px 40px rgba(0, 0, 0, 0.2);}
+.thick-shadow{box-shadow: 10px 20px 40px 20px rgba(0, 0, 0, 0.2);}
+.medium-shadow{box-shadow: 5px 10px 20px 10px rgba(0, 0, 0, 0.2);}
+.thin-shadow{box-shadow: 2px 3px 6px 4px rgba(0, 0, 0, 0.2);}
+
+/*ALIGNMENT*/
+.text-align-left{text-align: center;}
+.text-align-center{text-align: center;}
+.text-align-right{text-align: right;}
+
+/*BORDERS*/
+.thick-border{border-style: solid; border-width: thick;}
+.thin-border{border-style: solid; border-width: thin;}
+
+/*LIST*/
+.style-list{list-style-type: none; list-style-position: outside; padding: 7px;}
+li{padding: 5px;}
+a{cursor: pointer; text-decoration: none;}
+
+
+@media only screen and (min-width:1025px){
+    .body-container{display: flex; flex-direction: column; width:60%; margin-left:20%; min-height: 100vh;}
+    .header-fixed{position: fixed; top: 0; left:0; width: 100%; z-index: 1; padding: 5px; min-height: 120px; max-height: 120px; overflow: auto;}
+    .headertop{width:60%; margin-left:20%;}
+    .mobile-only{display: none;}
+    .menu-fixed{display: none;}
+    /*3 COLUMNS START*/
+    /*3 EQUAL COLUMNS STARTS*/
+    .columns3-equal-div-container{display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.3%; flex: 1; margin-top: 2px;}
+    .columns3-equal-left-div{padding: 5px;}
+    .columns3-equal-middle-div{padding: 5px;}
+    .columns3-equal-right-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-equal-div-container-fixed{display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-left CLASS, columns3-equal-left-div-fixed CLASS*/
+    .columns3-equal-div-container-fixed-left{display: grid; grid-template-columns: 33% 33% 33%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 33.3%;}
+    .columns3-equal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 32%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-left CLASS, columns3-equal-left-div-fixed CLASS, columns3-equal-right-div-fixed CLASS*/
+    .columns3-equal-right-div-fixed{position: fixed; top: 70px; left: 67%; width: 32%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-right CLASS, columns3-equal-right-div-fixed CLASS*/
+    .columns3-equal-div-container-fixed-right{display: grid; grid-template-columns: 33% 33% 33%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; }
+
+    /*3 EQUAL COLUMNS ENDS*/
+
+
+    /*3 UNEQUAL COLUMNS STARTS*/
+    .columns3-unequal-div-container{display: grid; grid-template-columns: 24.5% 49.5% 24.5%; grid-gap: 0.5%; flex: 1; margin-top: 2px;}
+    .columns3-unequal-left-div{padding: 5px;}
+    .columns3-unequal-middle-div{padding: 5px;}
+    .columns3-unequal-right-div{padding: 5px;}
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-unequal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-unequal-div-container-fixed{display: grid; grid-template-columns: 24.5% 49.5% 24.5%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS*/
+    .columns3-unequal-div-container-fixed-left{display: grid; grid-template-columns: 49.5% 24.3%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 25%;}
+    .columns3-unequal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 24%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-right-div-fixed{position: fixed; top: 70px; left: 75%; width: 24%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-right CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-div-container-fixed-right{display: grid; grid-template-columns: 24.5% 49.3% 24.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*3 UNEQUAL COLUMNS ENDS*/
+
+
+
+    /*3 UNEQUAL SIDES COLUMNS START*/
+    .columns3-unequal-side-div-container{display: grid; grid-template-columns: 16% 55.5% 26.5%; grid-gap: 0.5%; flex: 1; margin-top: 2px;}
+    .columns3-unequal-side-left-div{padding: 5px;}
+    .columns3-unequal-side-middle-div{padding: 5px;}
+    .columns3-unequal-side-right-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDE COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-unequal-side-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-unequal-side-div-container-fixed{display: grid; grid-template-columns: 16% 55.5% 26.5%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-side-div-container-fixed-left CLASS, columns3-unequal-side-left-div-fixed CLASS*/
+    .columns3-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 55.5% 26.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 16.5%;}
+    .columns3-unequal-side-left-div-fixed{position: fixed; top: 70px; left: 0; width: 15.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-side-right-div-fixed{position: fixed; top: 70px; left: 71%; width: 28%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDES COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-side-div-container-fixed-right CLASS, columns3-unequal-side-right-div-fixed CLASS*/
+    .columns3-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 15% 55.3% 26.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+    /*3 UNEQUAL SIDES COLUMNS START*/
+    /*3 COLUMNS END*/
+
+
+
+
+    /*BIG SCREEN CAN ALSO USE 2 COLUMNS LAYOUT TOO*/
+    /*2 COLUMNS START*/
+
+    /*2 EQUAL COLUMNS START*/
+    .columns2-equal-div-container{display: grid; grid-template-columns: 49.4% 49.4%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-equal-left-div{padding: 5px;}
+    .columns2-equal-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-equal-div-container-fixed{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-equal-div-container-fixed-left CLASS, columns2-equal-left-div-fixed CLASS*/
+    .columns2-equal-div-container-fixed-left{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 50%; width: 100%;}
+    .columns2-equal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 49%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-equal-div-container-fixed-right CLASS, columns2-equal-middle-div-fixed CLASS*/
+    .columns2-equal-div-container-fixed-right{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-equal-middle-div-fixed{position: fixed; top: 70px; left: 50%; width: 49%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 EQUAL COLUMNS END*/
+
+
+
+    /*2 UNEQUAL COLUMNS START*/
+    .columns2-unequal-div-container{display: grid; grid-template-columns: 20% 79%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-unequal-left-div{padding: 5px;}
+    .columns2-unequal-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-unequal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-unequal-div-container-fixed{display: grid; grid-template-columns: 20% 79%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-div-container-fixed-left CLASS, columns2-unequal-left-div-fixed CLASS*/
+    .columns2-unequal-div-container-fixed-left{display: grid; grid-template-columns: 78%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 21%; width: 100%;}
+    .columns2-unequal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 20%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-div-container-fixed-right CLASS, columns2-unequal-middle-div-fixed CLASS*/
+    .columns2-unequal-div-container-fixed-right{display: grid; grid-template-columns: 20% 78%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-unequal-middle-div-fixed{position: fixed; top: 70px; left: 20.5%; width: 78.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 UNEQUAL COLUMNS END*/
+
+
+
+    /*2 UNEQAUL-SIDE COLUMNS START*/
+    .columns2-unequal-side-div-container{display: grid; grid-template-columns: 79% 20%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-unequal-side-left-div{padding: 5px;}
+    .columns2-unequal-side-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-unequal-side-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-unequal-side-div-container-fixed{display: grid; grid-template-columns: 79% 20%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-side-div-container-fixed-left CLASS, columns2-unequal-side-left-div-fixed CLASS*/
+    .columns2-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 20%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 78%; width: 100%;}
+    .columns2-unequal-side-left-div-fixed{position: fixed; top: 70px; left: 0; width: 77.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-side-div-container-fixed-right CLASS, columns2-unequal-side-middle-div-fixed CLASS*/
+    .columns2-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 78% 20%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-unequal-side-middle-div-fixed{position: fixed; top: 70px; left: 78.5%; width: 20%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 UNEQUAL SIDE COLUMNS END*/
+    /*2 COLUMNS END*/
+
+
+
+
+    /*BIG SCREEN CAN ALSO USE 1 COLUMN LAYOUT TOO*/
+    /*1 COLUMN START*/
+    .columns1-equal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns1-equal-left-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns1-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns1-equal-div-container-fixed{display: grid; grid-template-columns: 60%; margin-left:20%; grid-gap: 0.5%; flex: 1; margin-top:100px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED AND THE COLUMN TOO TO BE FIXED, USE THIS HEADER AND THIS CONTAINER FOR THE DIVS*/
+    /*USE header-fixed, columns1-equal-div-container-fixed, AND columns1-equal-left-div-fixed*/
+    .columns1-equal-left-div-fixed{position: fixed; top: 100px; left: 20%; width: 60%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*1 COLUMN END*/
+}
+
+
+
+
+
+
+
+@media only screen and (min-width:769px) and (max-width:1024px){
+    .body-container{display: flex; flex-direction: column; min-height: 100vh;}
+    .header-fixed{position: fixed; top: 0; left: 0; width: 99.5%; z-index: 1; padding: 5px; min-height: 120px; max-height: 120px; overflow: auto;}
+    .headertop{width:100%;}
+    .mobile-only{display: none;}
+    .menu-fixed{display: none;}
+    /*3 COLUMNS ALSO SHOULD WORK HERE BUT WE CAN STILL DO SOME MODIFICATIONS TO IT LATER*/
+    /*3 COLUMNS START*/
+    /*3 EQUAL COLUMNS STARTS*/
+    .columns3-equal-div-container{display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.3%; flex: 1; margin-top: 2px;}
+    .columns3-equal-left-div{padding: 5px;}
+    .columns3-equal-middle-div{padding: 5px;}
+    .columns3-equal-right-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-equal-div-container-fixed{display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-left CLASS, columns3-equal-left-div-fixed CLASS*/
+    .columns3-equal-div-container-fixed-left{display: grid; grid-template-columns: 33% 33% 33%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 33.3%;}
+    .columns3-equal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 32%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-left CLASS, columns3-equal-left-div-fixed CLASS, columns3-equal-right-div-fixed CLASS*/
+    .columns3-equal-right-div-fixed{position: fixed; top: 70px; left: 67%; width: 32%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 EQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-equal-div-container-fixed-right CLASS, columns3-equal-right-div-fixed CLASS*/
+    .columns3-equal-div-container-fixed-right{display: grid; grid-template-columns: 33% 33% 33%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; }
+
+    /*3 EQUAL COLUMNS ENDS*/
+
+
+    /*3 UNEQUAL COLUMNS STARTS*/
+    .columns3-unequal-div-container{display: grid; grid-template-columns: 24.5% 49.5% 24.5%; grid-gap: 0.5%; flex: 1; margin-top: 2px;}
+    .columns3-unequal-left-div{padding: 5px;}
+    .columns3-unequal-middle-div{padding: 5px;}
+    .columns3-unequal-right-div{padding: 5px;}
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-unequal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-unequal-div-container-fixed{display: grid; grid-template-columns: 24.5% 49.5% 24.5%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS*/
+    .columns3-unequal-div-container-fixed-left{display: grid; grid-template-columns: 49.5% 24.3%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 25%;}
+    .columns3-unequal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 24%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-right-div-fixed{position: fixed; top: 70px; left: 75%; width: 24%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-right CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-div-container-fixed-right{display: grid; grid-template-columns: 24.5% 49.3% 24.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*3 UNEQUAL COLUMNS ENDS*/
+
+
+
+    /*3 UNEQUAL SIDES COLUMNS START*/
+    .columns3-unequal-side-div-container{display: grid; grid-template-columns: 16% 55.5% 26.5%; grid-gap: 0.5%; flex: 1; margin-top: 2px;}
+    .columns3-unequal-side-left-div{padding: 5px;}
+    .columns3-unequal-side-middle-div{padding: 5px;}
+    .columns3-unequal-side-right-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDE COLUMNS TO BE FIXED, USE THE header-fixed AND the columns3-unequal-side-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns3-unequal-side-div-container-fixed{display: grid; grid-template-columns: 16% 55.5% 26.5%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-side-div-container-fixed-left CLASS, columns3-unequal-side-left-div-fixed CLASS*/
+    .columns3-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 55.5% 26.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 16.5%;}
+    .columns3-unequal-side-left-div-fixed{position: fixed; top: 70px; left: 0; width: 15.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT AND RIGHT COLUMNS TO BE FIXED, */
+    /*USE THE header-fixed CLASS, columns3-unequal-div-container-fixed-left CLASS, columns3-unequal-left-div-fixed CLASS, columns3-unequal-right-div-fixed CLASS*/
+    .columns3-unequal-side-right-div-fixed{position: fixed; top: 70px; left: 71%; width: 28%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 3 UNEQUAL SIDES COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns3-unequal-side-div-container-fixed-right CLASS, columns3-unequal-side-right-div-fixed CLASS*/
+    .columns3-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 15% 55.3% 26.5%; width: 100%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+    /*3 UNEQUAL SIDES COLUMNS START*/
+    /*3 COLUMNS END*/
+
+
+
+
+
+    /*2 COLUMNS START*/
+    /*2 EQUAL COLUMNS START*/
+    .columns2-equal-div-container{display: grid; grid-template-columns: 49.4% 49.4%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-equal-left-div{padding: 5px;}
+    .columns2-equal-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-equal-div-container-fixed{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-equal-div-container-fixed-left CLASS, columns2-equal-left-div-fixed CLASS*/
+    .columns2-equal-div-container-fixed-left{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 50%; width: 100%;}
+    .columns2-equal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 49%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 EQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-equal-div-container-fixed-right CLASS, columns2-equal-middle-div-fixed CLASS*/
+    .columns2-equal-div-container-fixed-right{display: grid; grid-template-columns: 49.4% 49.4%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-equal-middle-div-fixed{position: fixed; top: 70px; left: 50%; width: 49%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 EQUAL COLUMNS END*/
+
+
+
+    /*2 UNEQUAL COLUMNS START*/
+    .columns2-unequal-div-container{display: grid; grid-template-columns: 20% 79%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-unequal-left-div{padding: 5px;}
+    .columns2-unequal-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-unequal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-unequal-div-container-fixed{display: grid; grid-template-columns: 20% 79%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-div-container-fixed-left CLASS, columns2-unequal-left-div-fixed CLASS*/
+    .columns2-unequal-div-container-fixed-left{display: grid; grid-template-columns: 78%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 21%; width: 100%;}
+    .columns2-unequal-left-div-fixed{position: fixed; top: 70px; left: 0; width: 20%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-div-container-fixed-right CLASS, columns2-unequal-middle-div-fixed CLASS*/
+    .columns2-unequal-div-container-fixed-right{display: grid; grid-template-columns: 20% 78%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-unequal-middle-div-fixed{position: fixed; top: 70px; left: 20.5%; width: 78.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 UNEQUAL COLUMNS END*/
+
+
+
+    /*2 UNEQAUL-SIDE COLUMNS START*/
+    .columns2-unequal-side-div-container{display: grid; grid-template-columns: 79% 20%; width: 100%; grid-gap: 0.3%; flex: 1;}
+    .columns2-unequal-side-left-div{padding: 5px;}
+    .columns2-unequal-side-middle-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns2-unequal-side-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns2-unequal-side-div-container-fixed{display: grid; grid-template-columns: 79% 20%; grid-gap: 0.3%; flex: 1; margin-top:70px;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE LEFT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS LEFT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-side-div-container-fixed-left CLASS, columns2-unequal-side-left-div-fixed CLASS*/
+    .columns2-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 20%; grid-gap: 0.3%; flex: 1; margin-top:70px; margin-left: 78%; width: 100%;}
+    .columns2-unequal-side-left-div-fixed{position: fixed; top: 70px; left: 0; width: 77.5%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+    /*IF YOU WANT THE HEADER OF THE 2 UNEQUAL SIDE COLUMNS TO BE FIXED AND ALSO THE RIGHT COLUMN TO BE FIXED, USE THIS HEADER AMD THIS CONTAINER FOR THE DIVS, AND THIS RIGHT DIV*/
+    /*USE THE header-fixed CLASS, columns2-unequal-side-div-container-fixed-right CLASS, columns2-unequal-side-middle-div-fixed CLASS*/
+    .columns2-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 78% 20%; grid-gap: 0.3%; flex: 1; margin-top:70px; width: 100%;}
+    .columns2-unequal-side-middle-div-fixed{position: fixed; top: 70px; left: 78.5%; width: 20%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*2 UNEQUAL SIDE COLUMNS END*/
+    /*2 COLUMNS END*/
+
+
+
+
+    /*TABLETS CAN ALSO USE 1 COLUMN LAYOUT TOO*/
+    /*1 COLUMN START*/
+    .columns1-equal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns1-equal-left-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns1-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns1-equal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:100px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED AND THE COLUMN TOO TO BE FIXED, USE THIS HEADER AND THIS CONTAINER FOR THE DIVS*/
+    /*USE header-fixed, columns1-equal-div-container-fixed, AND columns1-equal-left-div-fixed*/
+    .columns1-equal-left-div-fixed{position: fixed; top: 100px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    /*1 COLUMN END*/
+}
+
+
+
+
+
+
+@media only screen and (max-width:768px){
+    .body-container{display: flex; flex-direction: column; min-height: 100vh;}
+    .header-fixed{position: fixed; top: 0; left: 0; width: 99.5%; z-index: 1; padding: 5px; min-height: 120px; max-height: 120px; overflow: auto;}
+    .headertop{width:100%;}
+    .mobile-only{display: block;}
+    .menu-fixed{position: fixed; top: 70px; left: 0px; padding: 10px; max-width: 40%; height: 100%; z-index: 1; height: calc(100vh - 120px); overflow: auto;}
+    /*ANYTHING LEFT AND RIGHT IN COLUMNS3 AND COLUMNS2 SHOULD BE KILLED IN COLUMN1, ONLY MIDDLE IS LEFT ALONE*/
+    .columns2-equal-left-div{display: none;}
+    .columns2-equal-left-div-fixed{display: none;}
+    .columns2-unequal-left-div{display:none;}
+    .columns2-unequal-left-div-fixed{display:none;}
+    .columns2-unequal-side-left-div{display:none;}
+    .columns2-unequal-side-left-div-fixed{display:none;}
+    .columns3-unequal-side-right-div-fixed{display:none;}
+    .columns3-unequal-side-left-div-fixed{display:none;}
+    .columns3-unequal-side-right-div{display:none;}
+    .columns3-unequal-side-left-div{display:none;}
+    .columns3-unequal-right-div-fixed{display:none;}
+    .columns3-unequal-left-div-fixed{display:none;}
+    .columns3-unequal-right-div{display:none;}
+    .columns3-unequal-left-div{display:none;}
+    .columns3-equal-right-div-fixed{display:none;}
+    .columns3-equal-left-div-fixed{display:none;}
+    .columns3-equal-right-div{display:none;}
+    .columns3-equal-left-div{display:none;}
+    
+
+    /*ALL THE DIV CONTAINERS OF COLUMNS3 AND COLUMNS2 MUST BE PRESENT IN COLUMN1 TOO AND MUST NOT BE FIXED*/
+    .columns2-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-side-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-side-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns2-unequal-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-unequal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns2-equal-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-equal-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-equal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns2-equal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns3-unequal-side-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-side-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-side-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-side-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns3-unequal-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-unequal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns3-equal-div-container-fixed-right{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-equal-div-container-fixed-left{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-equal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:70px;}
+    .columns3-equal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+
+
+    /*THE MIDDLE DIVS OF COLUMNS3 AND COLUMNS2 MUST HAVE THE SAME STYLING WITH THE LEFT DIV OF COLUMN1 BOTH FIXED AND NON FIXED*/
+    /*
+    LETS COMMENT THIS OUT FIRST
+    .columns2-unequal-side-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-unequal-side-middle-div{padding: 5px;}
+    .columns2-unequal-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-unequal-middle-div{padding: 5px;}
+    .columns2-equal-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-equal-middle-div{padding: 5px;}
+    .columns3-unequal-side-middle-div{padding: 5px;}
+    .columns3-unequal-middle-div{padding: 5px;}
+    .columns3-equal-middle-div{padding: 5px;}
+    */
+
+    .columns2-unequal-side-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-unequal-side-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-unequal-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-unequal-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-equal-middle-div-fixed{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns2-equal-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns3-unequal-side-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns3-unequal-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+    .columns3-equal-middle-div{position: fixed; top: 70px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto;}
+
+
+    /*1 COLUMN START*/
+    .columns1-equal-div-container{display: grid; grid-template-columns: 99%; width: 100%; grid-gap: 0.5%; flex: 1;}
+    .columns1-equal-left-div{padding: 5px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED, USE THIS HEADER header-fixed AND columns1-equal-div-container-fixed THIS CONTAINER FOR THE DIVS*/
+    .columns1-equal-div-container-fixed{display: grid; grid-template-columns: 99%; grid-gap: 0.5%; flex: 1; margin-top:122px;}
+
+    /*IF YOU WANT THE HEADER OF THE 1 EQUAL COLUMNS TO BE FIXED AND THE COLUMN TOO TO BE FIXED, USE THIS HEADER AND THIS CONTAINER FOR THE DIVS*/
+    /*USE header-fixed, columns1-equal-div-container-fixed, AND columns1-equal-left-div-fixed*/
+    .columns1-equal-left-div-fixed{position: fixed; top: 122px; left: 0; width: 99%; height: calc(100vh - 120px); padding: 5px; overflow: auto; scrollbar-width: none; -ms-overflow-style: none;}
+    .columns1-equal-left-div-fixed::-webkit-scrollbar{display: none;}
+    /*1 COLUMN END*/
+}
+
+
+
+
+
+
+/*COLORS*/
+.gray{color: gray;} .beige{color:beige;} .bisque{color: bisque;} .black{color:black;} .blanchedalmond{color: blanchedalmond;}
+.grey{color:grey;} .blue{color:blue;} .blueviolet{color:blueviolet;} .brown{color: brown;} .burlywood{color: burlywood;}
+.green{color:green;} .cadetblue{color:cadetblue;} .chartreuse{color:chartreuse;} .chocolate{color:chocolate;} .coral{color:coral;} .cornflowerblue{color:cornflowerblue;}
+.greenyellow{color: greenyellow;} .cornsilk{color:cornsilk;} .crimson{color: crimson;} .darkblue{color:darkblue;} .darkcyan{color: darkcyan;} .darkgoldenrod{color:darkgoldenrod;}
+.goldenrod{color: goldenrod;} .darkgray{color:darkgray;} .darkgreen{color:darkgreen;} .darkgrey{color:darkgrey;} .darkkhaki{color: darkkhaki;}
+.gold{color:gold;} .darkmagenta{color:darkmagenta;} .darkolivegreen{color:darkolivegreen;} .darkorange{color: darkorange;} .darkorchid{color:darkorchid;} .darkred{color: darkred;}
+.ghostwhite{color: ghostwhite;} .darksalmon{color:darksalmon;} .darkseagreen{color: darkseagreen;} .darkslateblue{color: darkslateblue;} .darkslategray{color:darkslategray;}
+.gainsboro{color:gainsboro;} .darkturquoise{color: darkturquoise;} .darkviolet{color:darkviolet;} .deeppink{color: deeppink;} .deepskyblue{color: deepskyblue;}
+.aliceblue{color:aliceblue;} .dimgray{color: dimgray;} .dodgerblue{color:dodgerblue;} .firebrick{color:firebrick;} .floralwhite{color:floralwhite;}
+.antiquewhite{color:antiquewhite;} .forstgreen{color: forestgreen;} .fuchsia{color: fuchsia;} .honeydew{color:honeydew;} .hotpink{color:hotpink;}
+.aqua{color:aqua;} .indianred{color:indianred;} .indigo{color:indigo;} .ivory{color: ivory;} .khaki{color: khaki;} .lavender{color:lavender;}
+.aquamarine{color:aquamarine;} .lavenderblush{color:lavenderblush;} .lawngreen{color:lawngreen;} .lemonchiffon{color:lemonchiffon;} .lightblue{color:lightblue;}
+.azure{color:azure;} .lightcoral{color:lightcoral;} .lightcyan{color: lightcyan;} .lightgoldenrodyellow{color:lightgoldenrodyellow;}
+.linen{color:linen;} .limegreen{color:limegreen;} .lime{color:lime;} .lightyellow{color:lightyellow;} .lightsteelblue{color:lightsteelblue;}
+.lightslategrey{color:lightslategrey;} .lightskyblue{color:lightskyblue;} .lightseagreen{color:lightseagreen;} .lightsalmon{color:lightsalmon;}
+.lightpink{color:lightpink;} .lightgrey{color:lightgray;} .magenta{color:magenta;} .maroon{color:maroon;} .mediumaquamarine{color:mediumaquamarine;}
+.mediumblue{color:mediumblue;} .mediumorchid{color:mediumorchid;} .mediumpurple{color:mediumpurple;} .mediumseagreen{color:mediumseagreen;}
+.mediumslateblue{color:mediumslateblue;} .mediumspringgreen{color:mediumspringgreen;} .mediumturquoise{color:mediumturquoise;} .mediumvioletred{color:mediumvioletred;} .midnightblue{color:midnightblue;}
+.mintcream{color:mintcream;} .mistyrose{color:mistyrose;} .moccasin{color:moccasin;} .navajowhite{color:navajowhite;} .navy{color:navy;}
+.oldlace{color:oldlace;} .olive{color:olive;} .olivedrab{color:olivedrab;} .orange{color:orange;} .orangered{color:orangered;} .orchid{color:orchid;}
+.palegoldenrod{color:palegoldenrod;} .palegreen{color:palegreen;} .paleturquoise{color:paleturquoise;} .palevioletred{color:palevioletred;} .papayawhip{color:papayawhip;}
+.peachpuff{color:peachpuff;} .peru{color:peru;} .pink{color:pink;} .plum{color:plum;} .powderblue{color:powderblue;} .purple{color: purple;}
+.rebeccapurple{color: rebeccapurple;} .red{color:red;} .rosybrown{color:rosybrown;} .royalblue{color:royalblue;} .sb{color:saddlebrown;}
+.salmon{color:salmon;} .sandybrown{color:sandybrown;} .seagreen{color:seagreen;} .seashell{color:seashell;} .sienna{color:sienna;}
+.silver{color:silver;} .skyblue{color:skyblue;} .slateblue{color:slateblue;} .slategray{color:slategray;} .slategrey{color:slategrey;}
+.snow{color:snow;} .springgreen{color:springgreen;} .steelblue{color:steelblue;} .tan{color:tan;} .teal{color:teal;} .thistle{color:thistle;}
+.tomato{color:tomato;} .turquoise{color:turquoise;} .violet{color:violet;} .wheat{color:wheat;} .white{color:white;} .whitesmoke{color:whitesmoke;}
+.yellow{color:yellow;} .yellowgreen{color:yellowgreen;}
+
+
+
+
+
+
+/*BACKGROUND COLORS*/
+.gray-bg{background-color: gray;} .beige-bg{background-color:beige;} .bisque-bg{background-color: bisque;} .black-bg{background-color:black;} .blanchedalmond-bg{background-color: blanchedalmond;}
+.grey-bg{background-color:grey;} .blue-bg{background-color:blue;} .blueviolet-bg{background-color:blueviolet;} .brown-bg{background-color: brown;} .burlywood-bg{background-color: burlywood;}
+.green-bg{background-color:green;} .cadetblue-bg{background-color:cadetblue;} .chartreuse-bg{background-color:chartreuse;} .chocolate-bg{background-color:chocolate;} .coral-bg{background-color:coral;} .cornflowerblue-bg{background-color:cornflowerblue;}
+.greenyellow-bg{background-color: greenyellow;} .cornsilk-bg{background-color:cornsilk;} .crimson-bg{background-color: crimson;} .darkblue-bg{background-color:darkblue;} .darkcyan-bg{background-color: darkcyan;} .darkgoldenrod-bg{background-color:darkgoldenrod;}
+.goldenrod-bg{background-color: goldenrod;} .darkgray-bg{background-color:darkgray;} .darkgreen-bg{background-color:darkgreen;} .darkgrey-bg{background-color:darkgrey;} .darkkhaki-bg{background-color: darkkhaki;}
+.gold-bg{background-color:gold;} .darkmagenta-bg{background-color:darkmagenta;} .darkolivegreen-bg{background-color:darkolivegreen;} .darkorange-bg{background-color: darkorange;} .darkorchid-bg{background-color:darkorchid;} .darkred-bg{background-color: darkred;}
+.ghostwhite-bg{background-color: ghostwhite;} .darksalmon-bg{background-color:darksalmon;} .darkseagreen-bg{background-color: darkseagreen;} .darkslateblue-bg{background-color: darkslateblue;} .darkslategray-bg{background-color:darkslategray;}
+.gainsboro-bg{background-color:gainsboro;} .darkturquoise-bg{background-color: darkturquoise;} .darkviolet-bg{background-color:darkviolet;} .deeppink-bg{background-color: deeppink;} .deepskyblue-bg{background-color: deepskyblue;}
+.aliceblue-bg{background-color:aliceblue;} .dimgray-bg{background-color: dimgray;} .dodgerblue-bg{background-color:dodgerblue;} .firebrick-bg{background-color:firebrick;} .floralwhite-bg{background-color:floralwhite;}
+.antiquewhite-bg{background-color:antiquewhite;} .forstgreen-bg{background-color: forestgreen;} .fuchsia-bg{background-color: fuchsia;} .honeydew-bg{background-color:honeydew;} .hotpink-bg{background-color:hotpink;}
+.aqua-bg{background-color:aqua;} .indianred-bg{background-color:indianred;} .indigo-bg{background-color:indigo;} .ivory-bg{background-color: ivory;} .khaki-bg{background-color: khaki;} .lavender-bg{background-color:lavender;}
+.aquamarine-bg{background-color:aquamarine;} .lavenderblush-bg{background-color:lavenderblush;} .lawngreen-bg{background-color:lawngreen;} .lemonchiffon-bg{background-color:lemonchiffon;} .lightblue-bg{background-color:lightblue;}
+.azure-bg{background-color:azure;} .lightcoral-bg{background-color:lightcoral;} .lightcyan-bg{background-color: lightcyan;} .lightgoldenrodyellow-bg{background-color:lightgoldenrodyellow;}
+.linen-bg{background-color:linen;} .limegreen-bg{background-color:limegreen;} .lime-bg{background-color:lime;} .lightyellow-bg{background-color:lightyellow;} .lightsteelblue-bg{background-color:lightsteelblue;}
+.lightslategrey-bg{background-color:lightslategrey;} .lightskyblue-bg{background-color:lightskyblue;} .lightseagreen-bg{background-color:lightseagreen;} .lightsalmon-bg{background-color:lightsalmon;}
+.lightpink-bg{background-color:lightpink;} .lightgrey-bg{background-color:lightgray;} .magenta-bg{background-color:magenta;} .maroon-bg{background-color:maroon;} .mediumaquamarine-bg{background-color:mediumaquamarine;}
+.mediumblue-bg{background-color:mediumblue;} .mediumorchid-bg{background-color:mediumorchid;} .mediumpurple-bg{background-color:mediumpurple;} .mediumseagreen-bg{background-color:mediumseagreen;}
+.mediumslateblue-bg{background-color:mediumslateblue;} .mediumspringgreen-bg{background-color:mediumspringgreen;} .mediumturquoise-bg{background-color:mediumturquoise;} .mediumvioletred-bg{background-color:mediumvioletred;} .midnightblue-bg{background-color:midnightblue;}
+.mintcream-bg{background-color:mintcream;} .mistyrose-bg{background-color:mistyrose;} .moccasin-bg{background-color:moccasin;} .navajowhite-bg{background-color:navajowhite;} .navy-bg{background-color:navy;}
+.oldlace-bg{background-color:oldlace;} .olive-bg{background-color:olive;} .olivedrab-bg{background-color:olivedrab;} .orange-bg{background-color:orange;} .orangered-bg{background-color:orangered;} .orchid-bg{background-color:orchid;}
+.palegoldenrod-bg{background-color:palegoldenrod;} .palegreen-bg{background-color:palegreen;} .paleturquoise-bg{background-color:paleturquoise;} .palevioletred-bg{background-color:palevioletred;} .papayawhip-bg{background-color:papayawhip;}
+.peachpuff-bg{background-color:peachpuff;} .peru-bg{background-color:peru;} .pink-bg{background-color:pink;} .plum-bg{background-color:plum;} .powderblue-bg{background-color:powderblue;} .purple-bg{background-color: purple;}
+.rebeccapurple-bg{background-color: rebeccapurple;} .red-bg{background-color:red;} .rosybrown-bg{background-color:rosybrown;} .royalblue-bg{background-color:royalblue;} .sb-bg{background-color:saddlebrown;}
+.salmon-bg{background-color:salmon;} .sandybrown-bg{background-color:sandybrown;} .seagreen-bg{background-color:seagreen;} .seashell-bg{background-color:seashell;} .sienna-bg{background-color:sienna;}
+.silver-bg{background-color:silver;} .skyblue-bg{background-color:skyblue;} .slateblue-bg{background-color:slateblue;} .slategray-bg{background-color:slategray;} .slategrey-bg{background-color:slategrey;}
+.snow-bg{background-color:snow;} .springgreen-bg{background-color:springgreen;} .steelblue-bg{background-color:steelblue;} .tan-bg{background-color:tan;} .teal-bg{background-color:teal;} .thistle-bg{background-color:thistle;}
+.tomato-bg{background-color:tomato;} .turquoise-bg{background-color:turquoise;} .violet-bg{background-color:violet;} .wheat-bg{background-color:wheat;} .white-bg{background-color:white;} .whitesmoke-bg{background-color:whitesmoke;}
+.yellow-bg{background-color:yellow;} .yellowgreen-bg{background-color:yellowgreen;}
+
+
+
+
+
+/*BORDER COLORS*/
+.gray-bd{border-color: gray;} .beige-bd{border-color:beige;} .bisque-bd{border-color: bisque;} .black-bd{border-color:black;} .blanchedalmond-bd{border-color: blanchedalmond;}
+.grey-bd{border-color:grey;} .blue-bd{border-color:blue;} .blueviolet-bd{border-color:blueviolet;} .brown-bd{border-color: brown;} .burlywood-bd{border-color: burlywood;}
+.green-bd{border-color:green;} .cadetblue-bd{border-color:cadetblue;} .chartreuse-bd{border-color:chartreuse;} .chocolate-bd{border-color:chocolate;} .coral-bd{border-color:coral;} .cornflowerblue-bd{border-color:cornflowerblue;}
+.greenyellow-bd{border-color: greenyellow;} .cornsilk-bd{border-color:cornsilk;} .crimson-bd{border-color: crimson;} .darkblue-bd{border-color:darkblue;} .darkcyan-bd{border-color: darkcyan;} .darkgoldenrod-bd{border-color:darkgoldenrod;}
+.goldenrod-bd{border-color: goldenrod;} .darkgray-bd{border-color:darkgray;} .darkgreen-bd{border-color:darkgreen;} .darkgrey-bd{border-color:darkgrey;} .darkkhaki-bd{border-color: darkkhaki;}
+.gold-bd{border-color:gold;} .darkmagenta-bd{border-color:darkmagenta;} .darkolivegreen-bd{border-color:darkolivegreen;} .darkorange-bd{border-color: darkorange;} .darkorchid-bd{border-color:darkorchid;} .darkred-bd{border-color: darkred;}
+.ghostwhite-bd{border-color: ghostwhite;} .darksalmon-bd{border-color:darksalmon;} .darkseagreen-bd{border-color: darkseagreen;} .darkslateblue-bd{border-color: darkslateblue;} .darkslategray-bd{border-color:darkslategray;}
+.gainsboro-bd{border-color:gainsboro;} .darkturquoise-bd{border-color: darkturquoise;} .darkviolet-bd{border-color:darkviolet;} .deeppink-bd{border-color: deeppink;} .deepskyblue-bd{border-color: deepskyblue;}
+.aliceblue-bd{border-color:aliceblue;} .dimgray-bd{border-color: dimgray;} .dodgerblue-bd{border-color:dodgerblue;} .firebrick-bd{border-color:firebrick;} .floralwhite-bd{border-color:floralwhite;}
+.antiquewhite-bd{border-color:antiquewhite;} .forstgreen-bd{border-color: forestgreen;} .fuchsia-bd{border-color: fuchsia;} .honeydew-bd{border-color:honeydew;} .hotpink-bd{border-color:hotpink;}
+.aqua-bd{border-color:aqua;} .indianred-bd{border-color:indianred;} .indigo-bd{border-color:indigo;} .ivory-bd{border-color: ivory;} .khaki-bd{border-color: khaki;} .lavender-bd{border-color:lavender;}
+.aquamarine-bd{border-color:aquamarine;} .lavenderblush-bd{border-color:lavenderblush;} .lawngreen-bd{border-color:lawngreen;} .lemonchiffon-bd{border-color:lemonchiffon;} .lightblue-bd{border-color:lightblue;}
+.azure-bd{border-color:azure;} .lightcoral-bd{border-color:lightcoral;} .lightcyan-bd{border-color: lightcyan;} .lightgoldenrodyellow-bd{border-color:lightgoldenrodyellow;}
+.linen-bd{border-color:linen;} .limegreen-bd{border-color:limegreen;} .lime-bd{border-color:lime;} .lightyellow-bd{border-color:lightyellow;} .lightsteelblue-bd{border-color:lightsteelblue;}
+.lightslategrey-bd{border-color:lightslategrey;} .lightskyblue-bd{border-color:lightskyblue;} .lightseagreen-bd{border-color:lightseagreen;} .lightsalmon-bd{border-color:lightsalmon;}
+.lightpink-bd{border-color:lightpink;} .lightgrey-bd{border-color:lightgray;} .magenta-bd{border-color:magenta;} .maroon-bd{border-color:maroon;} .mediumaquamarine-bd{border-color:mediumaquamarine;}
+.mediumblue-bd{border-color:mediumblue;} .mediumorchid-bd{border-color:mediumorchid;} .mediumpurple-bd{border-color:mediumpurple;} .mediumseagreen-bd{border-color:mediumseagreen;}
+.mediumslateblue-bd{border-color:mediumslateblue;} .mediumspringgreen-bd{border-color:mediumspringgreen;} .mediumturquoise-bd{border-color:mediumturquoise;} .mediumvioletred-bd{border-color:mediumvioletred;} .midnightblue-bd{border-color:midnightblue;}
+.mintcream-bd{border-color:mintcream;} .mistyrose-bd{border-color:mistyrose;} .moccasin-bd{border-color:moccasin;} .navajowhite-bd{border-color:navajowhite;} .navy-bd{border-color:navy;}
+.oldlace-bd{border-color:oldlace;} .olive-bd{border-color:olive;} .olivedrab-bd{border-color:olivedrab;} .orange-bd{border-color:orange;} .orangered-bd{border-color:orangered;} .orchid-bd{border-color:orchid;}
+.palegoldenrod-bd{border-color:palegoldenrod;} .palegreen-bd{border-color:palegreen;} .paleturquoise-bd{border-color:paleturquoise;} .palevioletred-bd{border-color:palevioletred;} .papayawhip-bd{border-color:papayawhip;}
+.peachpuff-bd{border-color:peachpuff;} .peru-bd{border-color:peru;} .pink-bd{border-color:pink;} .plum-bd{border-color:plum;} .powderblue-bd{border-color:powderblue;} .purple-bd{border-color: purple;}
+.rebeccapurple-bd{border-color: rebeccapurple;} .red-bd{border-color:red;} .rosybrown-bd{border-color:rosybrown;} .royalblue-bd{border-color:royalblue;} .sb-bd{border-color:saddlebrown;}
+.salmon-bd{border-color:salmon;} .sandybrown-bd{border-color:sandybrown;} .seagreen-bd{border-color:seagreen;} .seashell-bd{border-color:seashell;} .sienna-bd{border-color:sienna;}
+.silver-bd{border-color:silver;} .skyblue-bd{border-color:skyblue;} .slateblue-bd{border-color:slateblue;} .slategray-bd{border-color:slategray;} .slategrey-bd{border-color:slategrey;}
+.snow-bd{border-color:snow;} .springgreen-bd{border-color:springgreen;} .steelblue-bd{border-color:steelblue;} .tan-bd{border-color:tan;} .teal-bd{border-color:teal;} .thistle-bd{border-color:thistle;}
+.tomato-bd{border-color:tomato;} .turquoise-bd{border-color:turquoise;} .violet-bd{border-color:violet;} .wheat-bd{border-color:wheat;} .white-bd{border-color:white;} .whitesmoke-bd{border-color:whitesmoke;}
+.yellow-bd{border-color:yellow;} .yellowgreen-bd{border-color:yellowgreen;}
