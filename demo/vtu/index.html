@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title id="title"></title>
+    <link rel="icon" href="/public/favicon.png" />
+    <link rel="stylesheet" href="/public/namy.css" />
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="/public/jquery.js"></script>
+</head>
+<body>
+    <div class="body-container app-bg-color2" style="color:#545150; font-size:18px;">
+        <header class="header-fixed headertop app-bg-color">
+            <table class="top-li-first">
+                <tr>
+                    <td class="td1" id="td1"><img src="/public/logo.png" class="logoclass" /></td>
+                    <td class="td2" id="usernameId"><a href="login.html" class="loginclass">Register/Login</a></td>
+                    <td class="td3" id="refresher"><i onclick="reloadWin()" class="bi bi-arrow-clockwise icon-size"></i></td>
+                    <td class="td4"><i class="bi bi-bell icon-size"></i></td>
+                </tr>
+            </table>
+            
+            <div class="balance">
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb1">
+                            <span><i class="bi bi-patch-check"></i></span> &nbsp; Balance &nbsp;
+                            <span id="closeBal" onclick="closeBal()"><i class="bi bi-eye-fill"></i></span>
+                            <span id="openBal" onclick="openBal()"><i class="bi bi-eye-slash-fill"></i></span>
+                        </td>
+                        
+                        <td class="tdb2" style="text-align:center;">
+                            <span>History </span>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb3">
+                            <span id="avalibaloopen">#0.00</span>
+                            <span id="avalibaloclose">****</span>
+                        </td>
+                        
+                        <td class="tdb4">
+                            <button>+ Deposit</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header> 
+
+     
+        <div class="columns1-equal-div-container-fixed">
+            <div class="columns1-equal-left-div-fixed black">
+                  <!--CONTENT COMES HERE--> 
+                  <div class="app-bg-color" style="padding-top:10px; padding-bottom:10px; margin-bottom:10px; margin-top:0px;" id="recento">
+                      <p>Recent Activity</p>
+                      <table class="table-recent-activity">
+                          <tr>
+                              <td class="trtd1"><i class="bi bi-database-fill icon-size-bold icon-cover"></i></td>
+                              <td class="trtd2"><span class="actity-top-left">Activity 2</span><br><span class="actity-down-left">Oct 23 2024, 10:30PM</span></td>
+                              <td class="trtd3"><span class="actity-top-right">#2,000.40</span><br><span class="actity-down-right">successful</span></td>
+                          </tr>
+                          <tr>
+                              <td class="trtd1"><i class="bi bi-database-fill icon-size-bold icon-cover"></i></td>
+                              <td class="trtd2"><span class="actity-top-left">Activity 1</span><br><span class="actity-down-left">Oct 20 2024, 02:40AM</span></td>
+                              <td class="trtd3"><span class="actity-top-right">#1,740.01</span><br><span class="actity-down-right">successful</span></td>
+                          </tr>
+                      </table>
+                  </div>
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                      <table class="table-top-action">
+                          <tr>
+                              <td class="trta1">
+                                  <a href="airtime.html">
+                                  <i class="bi bi-telephone-outbound-fill icon-size-bold icon-cover"></i><br><br>Airtime
+                                  </a>
+                              </td>
+                              <td class="trta2">
+                                  <a href="data.html"><i class="bi bi-database-fill icon-size-bold icon-cover"></i><br><br>Data</a>
+                              </td>
+                              <td class="trta3">
+                                  <a href="cable.html"><i class="bi bi-tv-fill icon-size-bold icon-cover"></i><br><br>Cable</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div>
+                  
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                    <table style="width:100%;">
+                        <tr style="width:100%;">
+                            <td style="width:10%; text-align:center;" id="topnotitd1"><i class="bi bi-envelope-paper-fill gold" style="font-size:50px;"></i></td>
+                            <td style="width:80%; font-size:14px;" id="topnotitd2">
+                                Welcome on board, Our prices are competitive and our service is hash free. Feel free to explore.
+                            </td>
+                            <td style="width:10%; text-align:left;" id="topnotitd3">
+                                <button class="circle app-color-as-bg app-bg-color-as-font" style="height:50px; width:60px;">Open</button>
+                            </td>
+                        </tr>
+                    </table>
+                  </div>
+                  
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                      <table class="table-down-action">
+                          <tr>
+                              <td class="trtad">
+                                  <a href="electricity.html"><i class="bi bi-battery-charging icon-size-bold icon-cover"></i><br><br>Electricity</a>
+                              </td>
+                              <td class="trtad">
+                                  <a href="result.html"><i class="bi bi-mortarboard-fill icon-size-bold icon-cover"></i><br><br>Result</a>
+                              </td>
+                              <td class="trtad">
+                                  <a href="bulksms.html"><i class="bi bi-envelope-fill icon-size-bold icon-cover"></i><br><br>Bulk SMS</a>
+                              </td>
+                              <td class="trtad">
+                                  <a onclick="profile()"><i class="bi bi-person-vcard-fill icon-size-bold icon-cover"></i><br><br>Account</a>
+                              </td>
+                          </tr>
+                        </table>
+                          
+                          
+                          
+                          
+                         
+                        <table class="table-down-action" style="margin-top:20px"> 
+                          <tr>
+                              <td class="trtad">
+                                  <a href="transfer.html"><i class="bi bi-arrow-left-right icon-size-bold icon-cover"></i><br><br>Transfer</a>
+                              </td>
+                              <td class="trtad">
+                                  <i class="bi bi-database-fill-gear icon-size-bold icon-cover"></i><br><br>Data Pins
+                              </td>
+                              <td class="trtad">
+                                  <i class="bi bi-telephone-fill icon-size-bold icon-cover"></i><br><br>Recharge Pins
+                              </td>
+                              <td class="trtad">
+                                  <a href="history.html"><i class="bi bi-clock-history icon-size-bold icon-cover"></i><br><br>History</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                    <table style="width:100%;">
+                        <tr style="width:100%;">
+                            <td style="width:90%; font-size:14px;" id="bottomnotitd2">
+                                Welcome on board, Our prices are competitive and our service is hash free. Feel free to explore.
+                            </td>
+                            <td style="width:10%; text-align:left;" id="bottomnotitd3">
+                                <button class="circle app-color-as-bg app-bg-color-as-font" style="height:50px; width:60px;">Open</button>
+                            </td>
+                        </tr>
+                    </table>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                        <table class="table-down-action" style="margin-top:20px"> 
+                          <tr>
+                              <td class="trtad">
+                                  <a onclick=""><i class="bi bi-currency-bitcoin icon-size-bold icon-cover"></i><br><br>Earn</a>
+                              </td>
+                              <td class="trtad">
+                                  <a onclick="showHist()"><i class="bi bi-clock-history icon-size-bold icon-cover"></i><br><br>History</a>
+                              </td>
+                              <td class="trtad">
+                                  <i class="bi bi-buildings-fill icon-size-bold icon-cover"></i><br><br>Affiliate
+                              </td>
+                              <td class="trtad">
+                                  <i class="bi bi-file-break-fill icon-size-bold icon-cover"></i><br><br>API Docs
+                              </td>
+                          </tr>
+                      </table>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="bottom-spacer"></div>
+            </div>
+        </div>
+        
+        
+
+
+
+
+        <footer class="thin-shadow app-bg-color silver" id="footer">
+          <div>
+            <table style="width: 100%;">
+                <tr style="width: 100%;">
+                    <td class="text-align-center"><i class="bi bi-house-door-fill icon-style-bottom"></i><br>Home</td>
+                    <td class="text-align-center"><a href="https://wa.me/+2347054875039?text=Hi, I am a user of timopay.com.ng" target="_blank"><i class="bi bi-whatsapp green"></i><br>Contact Us</a></td>
+                    <td class="text-align-center"><i class="bi bi-chat-dots-fill icon-style-bottom"></i><br>Support</td>
+                    <td class="text-align-center"><i class="bi bi-person-circle icon-style-bottom"></i><br>Profile</td>
+                </tr>
+            </table>
+           </div>
+        </footer>
+      
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+<!--MODAL DIV START-->
+<div class="modal">
+    <div class="modalcloser">
+        <button class="closerbtn" onclick="closeModal()">X</button>
+    </div>
+    <div class="modalinner"></div>
+</div>
+<!--MODAL DIV END-->
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title id="title"></title>
+    <link rel="icon" href="/vtu/public/favicon.png" />
+    <link rel="stylesheet" href="/public/namy.css" />
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="/public/jquery.js"></script>
+</head>
+<body>
+    <div class="body-container app-bg-color2" style="color:#545150; font-size:18px;">
+        <header class="header-fixed headertop app-bg-color">
+            <table class="top-li-first">
+                <tr>
+                    <td class="td1" id="td1"><img src="/public/logo.png" class="logoclass" /></td>
+                    <td class="td2" id="usernameId"><a href="login.html" class="loginclass">Register/Login</a></td>
+                    <td class="td3" id="refresher"><a href="login.html" style="text-decoration: none; cursor: pointer;"><i class="bi bi-arrow-clockwise icon-size"></i></a></td>
+                    <td class="td4"><a href="/demo/vtu/" style="text-decoration: none; cursor: pointer;"><i class="bi bi-box-arrow-in-right"></i></a></td>
+                </tr>
+            </table>
+            
+            <div class="balance">
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb1">
+                            &nbsp; Account &nbsp;
+                        </td>
+                        
+                        <td class="tdb2" style="text-align:center;">
+                            <span>Profile</span>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb3">
+                            <span id="avalibaloopen">Account Login</span>
+                        </td>
+                        
+                        <td class="tdb4">
+                            <button>Profile Login</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header> 
+
+     
+        <div class="columns1-equal-div-container-fixed">
+            <div class="columns1-equal-left-div-fixed black">
+                  <!--CONTENT COMES HERE--> 
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                    <div class="fieldsetclass thick-shadow">
+                        <fieldset>
+                            <legend>Login</legend>
+                            <div id="output" style="text-align: center;"></div>
+                            <div class="fieldsetinputclass">
+                                <label>Email/Phone/Username</label>
+                                <input class="input" placeholder="Email/Phone/Username" id="email" />
+                            </div>
+
+                            <div class="fieldsetinputclass">
+                                <label>Password</label>
+                                <input class="input" placeholder="Password" id="pwd" />
+                            </div>
+                            <button onclick="Login()" id="logi" class="btn royalblue-bg white">Login Now</button>
+                            <div id="logi2" style="text-align: center;"></div>
+                            <br />
+                            <div class="fieldsetinputclass">
+                                <a href="forgot.html" style="text-decoration: none; cursor: pointer; font-size: 14px;">Forgot Password ?</a>
+                            </div>
+                            <div class="fieldsetinputclass">
+                                <span style="font-size: 14px;">New User ?</span> <a href="register.html" style="text-decoration: none; cursor: pointer;"><button class="btn thin-border royalblue-bd royalblue white-bg">Register</button></a>
+                            </div>
+                        </fieldset>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="bottom-spacer"></div>
+            </div>
+        </div>
+        
+        
+
+
+
+
+        <footer class="thin-shadow app-bg-color silver" id="footer">
+          <div>
+            <table style="width: 100%;">
+                <tr style="width: 100%;">
+                    <td class="text-align-center"><i class="bi bi-house-door-fill icon-style-bottom"></i><br>Home</td>
+                    <td class="text-align-center"><a href="https://wa.me/+2347032095559?text=Hi, I am a user of newdichvtu" target="_blank"><i class="bi bi-whatsapp green"></i><br>Contact Us</a></td>
+                    <td class="text-align-center"><i class="bi bi-chat-dots-fill icon-style-bottom"></i><br>Support</td>
+                    <td class="text-align-center"><i class="bi bi-person-circle icon-style-bottom"></i><br>Profile</td>
+                </tr>
+            </table>
+           </div>
+        </footer>
+      
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+<!--MODAL DIV START-->
+<div class="modal">
+    <div class="modalcloser">
+        <button class="closerbtn" onclick="closeModal()">X</button>
+    </div>
+    <div class="modalinner"></div>
+</div>
+<!--MODAL DIV END-->
+
+</body>
+</html>

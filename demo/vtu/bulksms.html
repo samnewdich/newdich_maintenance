@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title id="title"></title>
+    <link rel="icon" href="/public/favicon.png" />
+    <link rel="stylesheet" href="/public/namy.css" />
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="/public/jquery.js"></script>
+</head>
+<body>
+    <div class="body-container app-bg-color2" style="color:#545150; font-size:18px;">
+        <header class="header-fixed headertop app-bg-color">
+            <table class="top-li-first">
+                <tr>
+                    <td class="td1" id="td1"><img src="/public/logo.png" class="logoclass" /></td>
+                    <td class="td2" id="usernameId"><a href="login.html" class="loginclass">Register/Login</a></td>
+                    <td class="td3" id="refresher"><a href="airtime.html" style="text-decoration: none; cursor: pointer;"><i class="bi bi-arrow-clockwise icon-size"></i></a></td>
+                    <td class="td4"><a href="/demo/vtu/" style="text-decoration: none; cursor: pointer;"><i class="bi bi-box-arrow-in-right"></i></a></td>
+                </tr>
+            </table>
+            
+            <div class="balance">
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb1">
+                            <span><i class="bi bi-patch-check"></i></span> &nbsp; Balance &nbsp;
+                            <span id="closeBal"><i class="bi bi-eye-fill"></i></span>
+                            <span id="openBal"><i class="bi bi-eye-slash-fill"></i></span>
+                        </td>
+                        
+                        <td class="tdb2" style="text-align:center;">
+                            <span>History </span>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                <table class="balance-table">
+                    <tr>
+                        <td class="tdb3">
+                            <span id="avalibaloopen">#0.00</span>
+                            <span id="avalibaloclose">****</span>
+                        </td>
+                        
+                        <td class="tdb4">
+                            <button>+ Deposit</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header> 
+
+     
+        <div class="columns1-equal-div-container-fixed">
+            <div class="columns1-equal-left-div-fixed black">
+                  <!--CONTENT COMES HERE--> 
+                  
+                  
+                  <div class="app-bg-color div-spacer">
+                    <div class="fieldsetclass thick-shadow">
+                        <fieldset>
+                            <legend>Bulk SMS</legend>
+                            
+
+                            <div class="fieldsetinputclass">
+                                <label>Currency</label>
+                                <select class="input" id="currency">
+                                    <option value="NGN">Nigerian Naira</option>
+                                    <option value="GHC">Ghanian Cedis</option>
+                                    <option value="ZAR">South African Rands</option>
+                                    <option value="USD">United States Dollar</option>
+                                    <option value="GBP">Great British Pounds</option>
+                                </select>
+                            </div>
+
+                            <div class="fieldsetinputclass">
+                                <label>Recipients Phone(Separate by Commas)</label>
+                                <textarea id="recipient" class="txtarea"></textarea>
+                            </div>
+
+                            <div class="fieldsetinputclass">
+                                <label>Message to Send</label>
+                                <textarea id="message" class="txtarea"></textarea>
+                            </div>
+
+                            <div class="fieldsetinputclass">
+                                <label>Sender(Custom Name)</label>
+                                <input type="text" id="sender" class="input" />
+                            </div>
+                            <button onclick="buyDataFunc()" class="btn royalblue-bg white">Continue</button>
+
+
+                            
+                            <div id="output" style="text-align: center;"></div>
+                            <br />
+                        </fieldset>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="bottom-spacer"></div>
+            </div>
+        </div>
+        
+        
+
+
+
+
+        <footer class="thin-shadow app-bg-color silver" id="footer">
+            <div>
+              <table style="width: 100%;">
+                  <tr style="width: 100%;">
+                      <td class="text-align-center"><i class="bi bi-house-door-fill icon-style-bottom"></i><br>Home</td>
+                      <td class="text-align-center"><a href="https://wa.me/+2347032095559?text=Hi, I am a user of newdichvtu" target="_blank"><i class="bi bi-whatsapp green"></i><br>Contact Us</a></td>
+                      <td class="text-align-center"><i class="bi bi-chat-dots-fill icon-style-bottom"></i><br>Support</td>
+                      <td class="text-align-center"><i class="bi bi-person-circle icon-style-bottom"></i><br>Profile</td>
+                  </tr>
+              </table>
+             </div>
+          </footer>
+      
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+<!--MODAL DIV START-->
+<div id="modal">
+    <div id="modalcloser">
+        <button id="closerbtn" onclick="closeModal()">X</button>
+    </div>
+    <div id="modalinner"></div>
+</div>
+<style>
+    #modal{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 95%;
+        min-height: 95%;
+        margin-top: 10px;
+        background-color: white;
+        opacity: 1.0;
+        z-index: 100;
+        display: none;
+    }
+    #modalinner{
+        width: 90%;
+        margin-left: 5%;
+        padding: 10px;
+        color:royalblue;
+        text-align: center;
+    }
+    #modalcloser{
+        width: 100%;
+    }
+    #closerbtn{
+        margin-left: 90%;
+        max-width: 60px;
+        max-height: 60px;
+        background-color: red;
+        border-color: red;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+
+</body>
+</html>
