@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewdichVTU 2.0</title>
+  <style>
+    /*IMPORT THE BOOSTRAP ICON*/
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"); 
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f4f9;
+      color: #1a1a1a;
+    }
+
+    .header-wrapper {
+      background-color: #6c3ad7;
+      padding-bottom: 2rem;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .app-bar {
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .left-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-container {
+      position: relative;
+      margin-left: 1rem;
+    }
+
+    .icon-container img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .icon-container span {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      font-weight: bold;
+    }
+
+    .balance-section {
+      background-color: white;
+      border-radius: 20px;
+      margin: -2rem 1.5rem 1.5rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 1;
+    }
+
+    .balance-section h2 {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .balance-section .amount {
+      font-size: 2.0rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+    }
+
+    .balance-section .plus-icon {
+      background-color: #f0f0ff;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons button {
+      width: 23%;
+      padding: 0.75rem 0;
+      border: none;
+      border-radius: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .withdraw { background-color: #f43f5e; }
+    .send { background-color: #7c3aed; }
+    .cards { background-color: #10b981; }
+    .exchange { background-color: #fbbf24; color: #000; }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+
+    .box {
+      background-color: white;
+      border-radius: 16px;
+      width: 48%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      cursor: pointer;
+    }
+
+    .box .label {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .box .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .income .value { color: #10b981; }
+    .expenses .value { color: #ef4444; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+
+    .bottom-nav div {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #4b5563;
+    }
+
+    .bottom-nav div img {
+      width: 20px;
+      height: 20px;
+      margin-bottom: 5px;
+    }
+
+    .bottom-nav div.active {
+      color: #6c3ad7;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .balance-section, .summary {
+        max-width: 600px;
+        margin: 2rem auto;
+      }
+
+      .bottom-nav {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+
+
+    /*MODAL CSS*/
+    #modaluser{
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 40%;
+      width: 100%;
+      background-color:#2d3748;
+      opacity: 0.7;
+      z-index: 1000;
+      display: none;
+    }
+
+    #modaluserinner{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      height: 60%;
+      width: 100%;
+      background-color: white;
+      opacity: 1.0;
+      z-index: 1000;
+      display: none;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .modalaction{
+      text-align:center; 
+      font-size:22px; 
+      font-weight:bold; 
+      margin-bottom:20px;
+    }
+
+    .withdraw-btn {
+      background-color: #6a3df0;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .withdraw-btn:hover {
+      background-color: #5a32c9;
+    }
+    .modaldiv{
+      width: 95%;
+      margin-left: 2.5%;
+      padding: 3px;
+      margin-bottom: 7px;
+    }
+    .modallabel{
+      font-size: 14px;
+    }
+    .modalinput{
+      width: 100%;
+      height: 40px;
+      font-size: 16px;
+      background-color: white;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom-style:solid;
+      border-bottom-width: thin;
+      border-color:#2d3748;
+      border-radius: 5px;
+      font-weight: bolder;
+    }
+    .modaltextarea{
+      width: 100%;
+      height: 80px;
+      font-size: 16px;
+      background-color: white;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom-style:solid;
+      border-bottom-width: thin;
+      border-color:#2d3748;
+      border-radius: 5px;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-wrapper">
+    <div class="app-bar">
+      <div class="left-icons">
+        <div class="logo">NewdichVTU</div>
+      </div>
+      <div class="icons">
+        <div class="icon-container">
+            <i class="bi bi-bell" style="font-size: 22px;"></i>
+            <span>4</span>
+        </div>
+        <div class="icon-container">
+            <i class="bi bi-person" style="font-size: 22px;"></i>
+          <span>6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="balance-section">
+    <h2>Total Balance</h2>
+    <div class="amount"># 2,562.50 <span class="plus-icon" onclick="showForm('deposit')">+</span></div>
+    <hr/>
+    <br/>
+    <div class="action-buttons">
+      <button onclick="showForm('airtime')" class="withdraw"><i class="bi bi-telephone-forward"></i><br/>Airtime</button>
+      <button onclick="showForm('data')" class="send"><i class="bi bi-telephone-forward"></i><br/>Data</button>
+      <button onclick="showForm('cable')" class="cards"><i class="bi bi-tv"></i><br/>TV</button>
+      <button onclick="showForm('electricity')" class="exchange"><i class="bi bi-lightbulb"></i><br/>Electric</button>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="box income" onclick="showForm('result')">
+      <div class="label">Result</div>
+      <div class="value"><i class="bi bi-mortarboard"></i></div>
+    </div>
+    <div class="box expenses" onclick="showForm('sms')">
+      <div class="label">SMS</div>
+      <div class="value"><i class="bi bi-envelope"></i></div>
+    </div>
+    <div class="box income" onclick="showForm('datapins')">
+      <div class="label">Data Pins</div>
+      <div class="value"><i class="bi bi-database"></i></div>
+    </div>
+    <div class="box expenses" onclick="showForm('rechargepins')">
+      <div class="label">Recharge Pins</div>
+      <div class="value"><i class="bi bi-phone-flip"></i></div>
+    </div>
+      <div class="box income" onclick="showForm('earn')">
+        <div class="label">Earn</div>
+        <div class="value"><i class="bi bi-currency-bitcoin"></i></div>
+      </div>
+      <div class="box expenses" onclick="showForm('api')">
+        <div class="label">API Docs</div>
+        <div class="value"><i class="bi bi-code-slash"></i></div>
+      </div>
+  </div>
+  <br/><br/><br/><br/>
+
+  <div class="bottom-nav">
+    <div class="active" style="cursor: pointer;" onclick="showForm('home')">
+        <i class="bi bi-house-door"></i><br/> Home
+    </div>
+    <div style="cursor: pointer;" onclick="showForm('transfer')">
+        <i class="bi bi-arrow-left-right"></i><br/> Transfer
+    </div>
+    <div style="cursor: pointer;" onclick="showForm('history')">
+        <i class="bi bi-clock-history"></i><br/> History
+    </div>
+    <div style="cursor: pointer;" onclick="showForm('account')">
+        <i class="bi bi-person-lines-fill"></i><br/> Account
+    </div>
+  </div>
+
+
+
+
+
+  <!--MODAL-->
+  <div id="modaluser" onclick="closeUserModal()"></div>
+  <div id="modaluserinner"></div>
+  <script src="script.js"></script>
+
+
+
+
+
+
+  <script>
+    function showForm(action){
+      if(action ==='airtime'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Network</label>
+            <select class="modalinput" id="network">
+              <option value="">Choose One</option>
+              <option value="MTN">MTN</option>
+              <option value="GLO">GLO</option>
+              <option value="Airtel">Airtel</option>
+              <option value="9Mobile">9Mobile</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Recipient Phone</label>
+            <input type="number" class="modalinput" id="recipient" placeholder="Recipient Phone" />
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Amount</label>
+            <input type="number" class="modalinput" id="amount" placeholder="Amount" />
+          </div>
+
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='data'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Network</label>
+            <select onchange="pickDataTypes(this)" class="modalinput" id="network">
+              <option value="">Choose One</option>
+              <option value="MTN">MTN</option>
+              <option value="GLO">GLO</option>
+              <option value="Airtel">Airtel</option>
+              <option value="9Mobile">9Mobile</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Recipient Phone</label>
+            <input type="number" class="modalinput" id="recipient" placeholder="Recipient Phone" />
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Data Type</label>
+            <span id="datatypespan">
+              <select class="modalinput">
+                <option value="">Choose One</option>
+              </select>
+            </span>
+          </div>
+
+          <span id="dataplanspan"></span>
+
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='cable'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}/TV<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Cable/TV Type</label>
+            <select class="modalinput" id="cable">
+              <option value="">Choose One</option>
+              <option value="DSTV">DSTV</option>
+              <option value="GoTV">GoTV</option>
+              <option value="Startimes">Startimes</option>
+              <option value="Showmax">Showmax</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Smartcard/IUC</label>
+            <input type="text" class="modalinput" id="iuc" placeholder="Smartcard/IUC" />
+          </div>
+
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='electricity'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Electricity Type</label>
+            <select class="modalinput" id="electricity">
+              <option value="">Choose One</option>
+              <option value="bedc">Benin Electricity</option>
+              <option value="ibedc">Ibadan Electricity</option>
+              <option value="ekedc">Eko Electricity</option>
+              <option value="ikedc">Ikeja Electricity</option>
+            </select>
+          </div>
+
+
+          <div class="modaldiv">
+            <label class="modallabel">Meter Type</label>
+            <select class="modalinput" id="metertype">
+              <option value="prepaid">Prepaid</option>
+              <option value="postpaid">Postpaid</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Meter Number</label>
+            <input type="text" class="modalinput" id="meternumber" placeholder="Meter Number" />
+          </div>
+          
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='deposit'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Deposit Method</label>
+            <select class="modalinput" id="depositmethod">
+              <option value="">Choose One</option>
+              <option value="card">Credit/Debit Card</option>
+              <option value="transfer">Bank Transfer</option>
+              <option value="manualdeposit">Manual Deposit</option>
+              <option value="bitcoin">Bitcoin</option>
+              <option value="usdt">USDT</option>
+              <option value="ethereum">Ethereum</option>
+              <option value="bnb">BNB</option>
+              <option value="paytrill">Paytrill</option>
+              <option value="twetacoin">Twetacoin</option>
+            </select>
+          </div>
+
+
+          <div class="modaldiv">
+            <label class="modallabel">Currency</label>
+            <select class="modalinput" id="currency">
+              <option value="NGN">Nigeria Naira(NGN)</option>
+              <option value="GHC">Ghana Cedis(GHC)</option>
+              <option value="ZAR">South African Rands</option>
+              <option value="USD">Unted States Dollar</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Amount</label>
+            <input type="number" class="modalinput" id="amount" placeholder="Amount to Deposit" />
+          </div>
+          
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='transfer'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()} TO USER<hr/></div>
+          <div style="padding:10px; font-size:12px; text-align:center;"><em>Note: You can only send to a user on this platform</em></div>
+          
+          <div class="modaldiv">
+            <label class="modallabel">Currency to Transfer</label>
+            <select class="modalinput" id="currency">
+              <option value="NGN">Nigeria Naira(NGN)</option>
+              <option value="GHC">Ghana Cedis(GHC)</option>
+              <option value="ZAR">South African Rands</option>
+              <option value="USD">Unted States Dollar</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Amount to Transfer</label>
+            <input type="number" class="modalinput" id="amount" placeholder="Amount to Transfer" />
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Recipient Email</label>
+            <input type="email" class="modalinput" id="amount" placeholder="Recipient Email" />
+          </div>
+          
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='earn'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div style="padding:10px; font-size:12px; text-align:center;"><em>Refer users to this platform and get rewarded on their first funding. <br/> Use your Referrer code below</em></div>
+          
+          <div class="modaldiv" style="text-align:center; margin-top:20px;">
+            <label>Your Referrer Code</label>
+            <div id="contentToCopyDiv" style="text-align:center; font-size:28px; font-weight:bolder;">029YHDTS</div>
+          </div>
+          
+          <div class="modaldiv">
+            <button id="copybtn" onclick="copyDivContent('contentToCopyDiv', 'copybtn')" class="withdraw-btn">Copy</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='result'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Result Type</label>
+            <select class="modalinput" id="result">
+              <option value="WAEC">WAEC</option>
+              <option value="NECO">NECO</option>
+              <option value="NABTEB">NABTEB</option>
+              <option value="JAMB">JAMB</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Exam Year</label>
+            <input type="number" class="modalinput" id="examyear" placeholder="Exam Year" />
+          </div>
+          
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='sms'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">SMS Type</label>
+            <select class="modalinput" id="sms">
+              <option value="Bulk">Bulk SMS</option>
+              <option value="Single">Single SMS</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Recipients(Separate with commas)</label>
+            <textarea class="modaltextarea" id="recipients" placeholder="Recipients Phone"></textarea>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">SMS Body</label>
+            <textarea class="modaltextarea" id="smsbody" placeholder="SMS Body"></textarea>
+          </div>
+          
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='datapins'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Network</label>
+            <select class="modalinput" id="network">
+              <option value="">Choose One</option>
+              <option value="MTN">MTN</option>
+              <option value="GLO">GLO</option>
+              <option value="Airtel">Airtel</option>
+              <option value="9Mobile">9Mobile</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Quantity</label>
+            <input type="number" class="modalinput" id="quantity" placeholder="Quantity" />
+          </div>
+
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='rechargepins'){
+        document.getElementById('modaluserinner').innerHTML=`
+          <div class="modalaction">${action.toUpperCase()}<hr/></div>
+          <div class="modaldiv">
+            <label class="modallabel">Network</label>
+            <select class="modalinput" id="network">
+              <option value="">Choose One</option>
+              <option value="MTN">MTN</option>
+              <option value="GLO">GLO</option>
+              <option value="Airtel">Airtel</option>
+              <option value="9Mobile">9Mobile</option>
+            </select>
+          </div>
+
+          <div class="modaldiv">
+            <label class="modallabel">Quantity</label>
+            <input type="number" class="modalinput" id="quantity" placeholder="Quantity" />
+          </div>
+
+          <div class="modaldiv">
+            <button type="submit" class="withdraw-btn">Continue</button>
+          </div>
+        `;
+        openUserModal();
+      }
+      else if(action ==='home'){
+        window.location="/demo/vtu2";
+      }
+      else if(action ==='history'){
+        window.location="history.html";
+      }
+
+
+    }
+
+
+
+    function copyDivContent(idtouse, btnthatcopied) {
+      const text = document.getElementById(idtouse).innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => document.getElementById(btnthatcopied).innerHTML=`Copied <i class="bi bi-check"></i>`)
+        .catch(err => document.getElementById(btnthatcopied).innerHTML=`Failed to copy`);
+    }
+  </script>
+
+
+<script>
+  function pickDataTypes(that){
+    let networkselected = that.value;
+    let dataTypes = ["corporate gifting", "sme", "sme2"];
+    let outputDataTypes =`<select onchange="pickDataPlans(this)" class="modalinput" id="datatypes">`;
+    for(let i = 0; i < dataTypes.length; i++){
+      outputDataTypes +=`<option value="${dataTypes[i]}">${networkselected.toUpperCase()} - ${dataTypes[i]}</option>`;
+    }
+    outputDataTypes +=`</select>`;
+    document.getElementById('datatypespan').innerHTML=`${outputDataTypes}`;
+  }
+  
+
+  function pickDataPlans(that){
+    let dataTypeSelected = that.value;
+    dataPlan = ["10GB", "20GB", "30GB"];
+    let outputDataPlan =`<div class="modaldiv">`;
+    outputDataPlan +=`<label class="modallabel">Data Type</label>`;
+    outputDataPlan +=`<select class="modalinput" id="dataplan">`;
+    for(let x = 0; x < dataPlan.length; x++){
+      outputDataPlan +=`<option value="${dataPlan[x]}">${dataPlan[x]}</option>`;
+    }
+    outputDataPlan +=`</select>`;
+    document.getElementById('dataplanspan').innerHTML=`${outputDataPlan}`;
+  }
+</script>
+
+
+
+</body>
+
+</html>

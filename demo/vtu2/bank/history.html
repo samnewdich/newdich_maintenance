@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewdichVTU 2.0</title>
+  <style>
+    /*IMPORT THE BOOSTRAP ICON*/
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"); 
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f6f5fa;
+      color: #2d2d2d;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      padding: 1rem;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .notification-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .notification {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: white;
+    }
+
+    .notification-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .icon-purple { background-color: #6c5ce7; }
+    .icon-green { background-color: #00b894; }
+    .icon-pink { background-color: #fd79a8; }
+    .icon-yellow { background-color: #fdcb6e; }
+
+    .notification-content {
+      flex-grow: 1;
+    }
+
+    .notification-title {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .notification-text {
+      margin: 0.25rem 0 0.5rem 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .notification-time {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      border-top: 1px solid #ddd;
+      background: white;
+    }
+
+    .bottom-nav div {
+      text-align: center;
+      font-size: 0.75rem;
+    }
+
+    .bottom-nav div i {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+        <i class="bi bi-arrow-left-square"></i>
+      <h2>History</h2>
+      <i class="fas fa-bell-slash"></i>
+    </div>
+
+    <div class="notification-list">
+      <div class="notification">
+        <div class="notification-icon icon-purple">
+          <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="notification-content">
+          <p class="notification-title">Transfer</p>
+          <p class="notification-text">Transfer to John #50</p>
+          <p class="notification-time">5/3/2025 10:30 AM</p>
+        </div>
+      </div>
+
+      <div class="notification">
+        <div class="notification-icon icon-green">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        <div class="notification-content">
+          <p class="notification-title">Data Purchase</p>
+          <p class="notification-text">Data of 10GB was purchased.</p>
+          <p class="notification-time">5/3/2020 10:30 AM</p>
+        </div>
+      </div>
+
+      <div class="notification">
+        <div class="notification-icon icon-pink">
+          <i class="fas fa-key"></i>
+        </div>
+        <div class="notification-content">
+          <p class="notification-title">Airtime Purchase</p>
+          <p class="notification-text">Airtime purchase was successful</p>
+          <p class="notification-time">5/3/2020 10:30 AM</p>
+        </div>
+      </div>
+
+      <div class="notification">
+        <div class="notification-icon icon-yellow">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <div class="notification-content">
+          <p class="notification-title">Cable/TV</p>
+          <p class="notification-text">Cable/TV Purchase</p>
+          <p class="notification-time">5/3/2020 10:30 AM</p>
+        </div>
+      </div>
+
+      <div class="notification">
+        <div class="notification-icon icon-purple">
+          <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="notification-content">
+          <p class="notification-title">Electricity</p>
+          <p class="notification-text">Electricity Bill Of #2000</p>
+          <p class="notification-time">5/2/2020 10:30 AM</p>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="bottom-nav">
+      <div><i class="fas fa-clock"></i>Overview</div>
+      <div><i class="fas fa-file-alt"></i>Pages</div>
+      <div><i class="fas fa-th"></i>Components</div>
+      <div><i class="fas fa-credit-card"></i>My Cards</div>
+      <div><i class="fas fa-cog"></i>Settings</div>
+    </div>-->
+  </div>
+</body>
+</html>
