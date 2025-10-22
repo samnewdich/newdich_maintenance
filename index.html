@@ -157,6 +157,15 @@
 
     /* subtle focus */
     input:focus,textarea:focus,button:focus{outline:2px solid rgba(124,92,255,0.14);outline-offset:2px}
+
+    .service-icon {
+      transition: filter 0.5s, transform 0.3s;
+    }
+    .service-icon:hover {
+      filter: drop-shadow(0 0 10px var(--accent));
+      transform: scale(1.05);
+    }
+
   </style>
 </head>
 <body>
@@ -223,12 +232,19 @@
                 </svg>
               </div>
               <h3>Blockchain/Web3</h3>
-              <p>Secure architecture, audits, penetration testing, and incident response readiness.</p>
+              <p>We also develops blockchain and Web3 solutions — powering decentralized finance, digital identity, and smart contract innovation.</p>
             </div>
             <div class="card service">
-              <div style="font-size:22px">🛡️</div>
+              <div style="font-size:22px">
+                <!-- Artificial Intelligence Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="#ffb347" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="service-icon">
+                  <circle cx="32" cy="32" r="10"/>
+                  <path d="M32 2v10M32 52v10M2 32h10M52 32h10M11 11l7 7M46 46l7 7M46 18l7-7M11 53l7-7"/>
+                  <circle cx="32" cy="32" r="3" fill="#ffb347"/>
+                </svg>
+              </div>
               <h3>Artificial Intelligence</h3>
-              <p>Secure architecture, audits, penetration testing, and incident response readiness.</p>
+              <p>Developing intelligent systems that can analyze data, learn patterns, and automate complex decisions.</p>
             </div>
             <div class="card service">
               <div style="font-size:22px">🛡️</div>
