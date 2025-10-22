@@ -1,174 +1,319 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Newdich Technology | Maintenance</title>
-  <script src="https://d3u598arehftfk.cloudfront.net/prebid_hb_14108_21710.js" async> </script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Newdich Technology — Software, IoT, AI & Training</title>
+  <meta name="description" content="Newdich Technology — Software engineering, IoT & robotics, cybersecurity, data science, AI, blockchain, cloud, networking. We build, deploy and train." />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c5cff; /* purple */
+      --accent-2:#ffb347; /* orange */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.03);
+      --white:#f8fafc;
+      --success:#22c55e;
+      --danger:#ef4444;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.12), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(255,179,71,0.06), transparent),
+                  var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:120px; /* space for sticky footer */
     }
+    .container{max-width:1150px;margin:0 auto;padding:28px}
 
-    .container {
-      max-width: 800px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 1.5s ease;
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:54px;height:54px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;font-weight:700;color:#061024;box-shadow:0 6px 18px rgba(124,92,255,0.12),0 2px 6px rgba(0,0,0,0.5)
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #00ffd5;
+    .logo img{
+        animation: logoGlow 3s ease-in-out infinite;
+        width:98%;height:98%;
     }
+    .brand h1{font-size:18px;margin:0}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--white)}
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
+    /* Mobile nav */
+    .hamburger{display:none;background:transparent;border:0;color:var(--white);font-size:22px}
+    @media (max-width:880px){nav{display:none}.hamburger{display:block}}
 
-    .highlight {
-      color: #00ffd5;
-      font-weight: bold;
-    }
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:24px 0}
+    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(124,92,255,0.12),rgba(255,179,71,0.06));color:var(--accent-2);font-weight:700;font-size:13px}
+    .headline{font-size:36px;margin:12px 0 10px;color:var(--white);line-height:1.05}
+    .sub{color:var(--muted);font-size:16px}
+    .cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#5f3bff);box-shadow:0 8px 30px rgba(124,92,255,0.16)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
 
-    .contact {
-      margin-top: 2rem;
-      font-size: 1rem;
-    }
+    /* Feature cards */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+    .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .service h3{margin:8px 0 6px}
+    .service p{color:var(--muted);font-size:14px}
 
-    .contact a {
-      color: #00ffd5;
-      text-decoration: none;
-      display: block;
-      margin: 0.3rem 0;
-    }
+    /* Right hero */
+    .visual{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .grid-small{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .stat{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
+    .stat h4{margin:0}
 
-    .contact a:hover {
-      text-decoration: underline;
-    }
+    /* About / Institute */
+    .split{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;margin-top:40px}
+    .institute-card{background:linear-gradient(90deg, rgba(124,92,255,0.06), rgba(255,179,71,0.03));padding:18px;border-radius:12px}
 
-    .tech-info {
-      margin-top: 3rem;
-      text-align: left;
-    }
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+    .project{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Contact */
+    .contact{margin-top:36px;padding:20px;border-radius:12px;background:linear-gradient(90deg, rgba(255,179,71,0.03), rgba(124,92,255,0.03));border:1px solid rgba(255,255,255,0.03)}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form input, form textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:var(--white)}
+    form textarea{grid-column:1/3;min-height:120px}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    /* Footer */
+    footer.sticky{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(6,10,20,0.9), rgba(6,10,20,0.98));backdrop-filter:blur(6px);padding:12px 0;box-shadow:0 -10px 30px rgba(2,6,23,0.6)}
+    .footer-inner{max-width:1150px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 22px}
+    .foot-links{display:flex;gap:14px}
+    .small{color:var(--muted);font-size:13px}
 
-      .tech-info {
-        text-align: center;
-      }
-    }
+    @media (max-width:1150px){.hero,.split{grid-template-columns:1fr;}.projects{grid-template-columns:repeat(2,1fr)}.services{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:680px){.projects{grid-template-columns:1fr}.card{padding:14px}.container{padding:18px}.headline{font-size:28px}.visual{padding:12px}.brand h1{font-size:16px}}
+
+    /* Micro animations */
+    .pulse{animation:pulse 6s infinite}
+    @keyframes pulse{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* subtle focus */
+    input:focus,textarea:focus,button:focus{outline:2px solid rgba(124,92,255,0.14);outline-offset:2px}
   </style>
-
-<script data-cfasync="false" SRC="//bdv.bidvertiser.com/BidVertiser.dbm?pid=643756&bid=2098264" TYPE="text/javascript"></script>
-<!--End BidVertiser code-->
-
-    <!-- Bidvertiser2098264 -->
 </head>
 <body>
-    <div style="text-align: center;">
-        <script type='text/javascript'>
-        (function(d) {
-            var params = { bvpushsubid: 2098264, cb: (new Date()).getTime() };
-            var qs = Object.keys(params).reduce(function(a, k){ a.push(k + '=' + encodeURIComponent(params[k])); return a},[]).join(String.fromCharCode(38));
-            var s = d.createElement('script'); s.type='text/javascript';s.async=true;
-            var p = 'https:' == document.location.protocol ? 'https' : 'http';
-            s.src = p + "://cdn.hyperpromote.com/bidvertiser/tags/activejs/bdpush.js?" + qs;
-            d.getElementsByTagName('body').item(0).appendChild(s);
-        })(document);
-        </script>
-    </div>
-
-
   <div class="container">
-    <h1>🔧 Site Under Maintenance</h1>
-    <p>
-      Welcome to <span class="highlight">Newdich Technology</span>. We're currently performing scheduled maintenance
-      to upgrade our systems and enhance your experience. We’ll be back online shortly.
-    </p>
+    <header>
+      <div class="brand">
+        <div class="logo">
+            <img src="/public/assets/newdich.png" alt="ND">
+        </div>
+        <div>
+          <h1>Newdich Technology</h1>
+          <div class="small">Engineering • IoT • AI • Training</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#institute">Institute</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="#contact">Get Started</a>
+      </nav>
+      <button class="hamburger" aria-label="Open menu" id="menuBtn">☰</button>
+    </header>
 
-    <div class="contact">
-      <p>📞 For Enquiries:</p>
-      <a href="tel:+2347032095559">Call/WhatsApp: +2347032095559</a>
-      <a href="mailto:newdichngr@gmail.com">Email: newdichngr@gmail.com</a>
-      <a href="https://facebook.com/newdich" target="_blank">Facebook</a>
-      <a href="https://www.linkedin.com/company/newdichtechnology/" target="_blank">LinkedIn</a>
-    </div>
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div>
+          <div class="eyebrow">Trusted by companies, schools & governments</div>
+          <h2 id="hero-heading" class="headline">We build secure, scalable and smart tech — from products to people.</h2>
+          <p class="sub">Software engineering, Internet of Things & robotics, cybersecurity, AI & data science, blockchain, cloud and networking. We also train tech talent at Newdich Technology Institute.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact" style="color: wheat; text-decoration: none; cursor: pointer;">Start a project</a>
+            <a class="btn btn-ghost" href="#institute" style="color: wheat; text-decoration: none; cursor: pointer; border-color: wheat;">Join the institute</a>
+          </div>
 
-    <div class="tech-info">
-      <h2>💡 About Us & Technology</h2>
-      <p>At Newdich Technology, we’re passionate about empowering the next generation through cutting-edge technology education and software solutions.</p>
-      <p>We specialize in training individuals in key areas such as <span class="highlight">Software Engineering</span>, <span class="highlight">Blockchain</span>, <span class="highlight">Web Development</span>, <span class="highlight">Data Analysis</span>, and <span class="highlight">Cloud Computing</span>.</p>
-      <p>Our expert-led programs are tailored for both beginners and professionals looking to upgrade their skills for the modern tech workforce.</p>
-      <p>Stay tuned! We’re working hard to bring you a better, faster, and more powerful online experience.</p>
-    </div>
+          <div class="services" id="services" aria-label="Our services">
+            <div class="card service">
+              <div style="font-size:22px">💻</div>
+              <h3>Software Engineering</h3>
+              <p>Web, mobile, APIs, platforms — built with modern best practices and robust testing.</p>
+            </div>
+            <div class="card service">
+              <div style="font-size:22px">🤖</div>
+              <h3>IoT & Robotics</h3>
+              <p>Edge devices, sensors, automation and embedded systems for real-world integration.</p>
+            </div>
+            <div class="card service">
+              <div style="font-size:22px">🛡️</div>
+              <h3>Cybersecurity</h3>
+              <p>Secure architecture, audits, penetration testing, and incident response readiness.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="visual" aria-label="Stats and highlights">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div>
+              <div class="small">Years of combined experience</div>
+              <h3>12+</h3>
+            </div>
+            <div style="text-align:right">
+              <div class="small">Trusted clients</div>
+              <h3>100+</h3>
+            </div>
+          </div>
+
+          <div class="grid-small">
+            <div class="stat">
+              <h4>AI & Data</h4>
+              <div class="small">Production ML systems and analytics</div>
+            </div>
+            <div class="stat">
+              <h4>Cloud & Infra</h4>
+              <div class="small">Kubernetes, serverless & efficient pipelines</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">We handle projects for fintech, governments, schools, enterprises and startups.</div>
+        </aside>
+      </section>
+
+      <section class="split" style="margin-top:10px">
+        <div>
+          <h2 style="margin-top:0">What we do</h2>
+          <p class="sub">From idea to production — we design, build and operate secure systems. Our teams specialise in full-stack development, embedded systems, ML engineering, blockchain, and cloud-native architecture.</p>
+
+          <div class="projects" id="projects" aria-label="Sample projects">
+            <div class="project card">
+              <strong>Smart Metering</strong>
+              <div class="small">IoT solution for utility consumption tracking and analytics.</div>
+            </div>
+            <div class="project card">
+              <strong>Fintech Gateway</strong>
+              <div class="small">PCI-compliant payments API and reconciliation engine.</div>
+            </div>
+            <div class="project card">
+              <strong>AI Document Processor</strong>
+              <div class="small">NLP pipeline for automated classification and extraction.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="institute-card" id="institute">
+          <h3>Newdich Technology Institute</h3>
+          <p class="small">A training arm of Newdich Technology — we run hands-on courses in software engineering, data science, cybersecurity, IoT and more. Designed for beginners and professionals.</p>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li>Short bootcamps & long-term programs</li>
+            <li>Industry projects and mentorship</li>
+            <li>Placement help and career guidance</li>
+          </ul>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn btn-primary" href="#contact" style="color: wheat; text-decoration: none; cursor: pointer;">Apply</a>
+            <a class="btn btn-ghost" href="#" style="color: wheat; text-decoration: none; cursor: pointer; border-color: wheat;">Curriculum</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="contact" id="contact">
+        <h2 style="margin-top:0">Let's work together</h2>
+        <p class="small">Tell us about your project or training interest — we'll get back to you within 48 hours.</p>
+        <form id="contactForm" novalidate>
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <input type="text" name="company" placeholder="Company / school (optional)" />
+          <textarea name="message" placeholder="Briefly describe your project or training needs" required></textarea>
+          <div style="grid-column:1/3;display:flex;gap:8px;align-items:center">
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <div id="formMsg" class="small" style="color:var(--muted)">We do not share your information.</div>
+          </div>
+        </form>
+      </section>
+
+    </main>
   </div>
 
+  <footer class="sticky" role="contentinfo">
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="logo" style="width:40px;height:40px;border-radius:10px">ND</div>
+        <div>
+          <div style="font-weight:700">Newdich Technology</div>
+          <div class="small">Building secure & intelligent tech — since 2013</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="foot-links small">
+          <a href="#services">Services</a>
+          <a href="#institute">Institute</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="small">© Newdich Technology</div>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // Optional: Add a slight animation effect
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.querySelector('.container');
-      container.style.opacity = '1';
+    // Mobile nav toggle
+    const menuBtn = document.getElementById('menuBtn');
+    let menuOpen = false;
+    menuBtn && menuBtn.addEventListener('click', ()=>{
+      menuOpen = !menuOpen;
+      if(menuOpen){
+        const nav = document.createElement('nav');
+        nav.id='mobileNav';
+        nav.style.position='fixed';nav.style.top='70px';nav.style.right='18px';nav.style.background='linear-gradient(180deg, rgba(6,10,20,0.96), rgba(6,10,20,0.98))';nav.style.padding='14px';nav.style.borderRadius='12px';nav.style.boxShadow='0 10px 30px rgba(2,6,23,0.6)';
+        nav.innerHTML = '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#services">Services</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#projects">Projects</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#institute">Institute</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#contact">Contact</a>';
+        document.body.appendChild(nav);
+      } else {
+        const existing = document.getElementById('mobileNav');
+        existing && existing.remove();
+      }
+    });
+
+    // Simple form handling — no backend, creates mailto fallback and local validation
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form && form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = data.get('name').trim();
+      const email = data.get('email').trim();
+      const message = data.get('message').trim();
+      if(!name || !email || !message){
+        formMsg.style.color='var(--danger)';formMsg.textContent='Please fill the required fields.';return;
+      }
+      // Create mailto fallback for quick demo
+      const subject = encodeURIComponent('Newdich enquiry from '+name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nCompany: '+(data.get('company')||'')+'\n\n'+message);
+      const mailto = `mailto:hello@newdich.tech?subject=${subject}&body=${body}`;
+      // attempt to open mail client
+      window.location.href = mailto;
+      formMsg.style.color='var(--success)';formMsg.textContent='Opening your mail client — or copy/paste the message.';
+      form.reset();
+    });
+
+    // Tiny accessibility improvement: enable keyboard close for mobile menu
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        const existing = document.getElementById('mobileNav');
+        existing && existing.remove();menuOpen=false;
+      }
     });
   </script>
-
-<br />
-<a id="braintan">
-    <!--BIDVERTISER-->
-    <div id="ntv_2098264"></div>
-    <script type="text/javascript">
-    (function(d) {
-    	var params =
-    	{
-    		bvwidgetid: "ntv_2098264",
-    		bvlinksownid: 2098264,
-    		rows: 1,
-    		cols: 1,
-    		textpos: "below",
-    		imagewidth: 150,
-    		mobilecols: 1,
-    		cb: (new Date()).getTime()
-    	};
-    	params.bvwidgetid = "ntv_2098264" + params.cb;
-    	d.getElementById("ntv_2098264").id = params.bvwidgetid;
-    	var qs = Object.keys(params).reduce(function(a, k){ a.push(k + '=' + encodeURIComponent(params[k])); return a},[]).join(String.fromCharCode(38));
-    	var s = d.createElement('script'); s.type='text/javascript';s.async=true;
-    	var p = 'https:' == document.location.protocol ? 'https' : 'http';
-    	s.src = p + "://cdn.hyperpromote.com/bidvertiser/tags/active/bdvws.js?" + qs;
-    	d.getElementById(params.bvwidgetid).appendChild(s);
-    })(document);
-    </script>
-</a>
 </body>
 </html>
