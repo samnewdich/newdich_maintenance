@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Newdich Technology Institute — Train · Build · Launch</title>
+  <link rel="icon" href="/newdich-institute.png" />
+  <link rel="favicon" href="/newdich-institute.png" />
+  <meta name="description" content="Newdich Technology Institute — hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now." />
+  <link rel="canonical" href="https://newdich.tech/institute" />
+
+<!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Newdich Technology Institute" />
+<meta property="og:title" content="Newdich Technology Institute - hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now." />
+<meta property="og:description" content="Pursue a career in tech at Newdich Technology Institute and be certified. hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now." />
+<meta property="og:url" content="https://newdich.tech/institute" />
+
+<!-- Use the full absolute URL to your image (recommended size 1200x630px) -->
+<meta property="og:image" content="https://newdich.tech/newdich-institute.png" />
+<meta property="og:image:secure_url" content="https://newdich.tech/newdich-institute.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Newdich Technology Institute logo" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@newdichtech" /> <!-- optional -->
+<meta name="twitter:title" content="Newdich Technology Institute - hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now." />
+<meta name="twitter:description" content="Pursue a career in tech at Newdich Technology Institute and be certified. hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now." />
+<meta name="twitter:image" content="https://newdich.tech/newdich-institute.png" />
+
+<!-- Helpful extras -->
+<link rel="image_src" href="https://newdich.tech/newdich-institute.png" />
+<meta name="theme-color" content="#0a192f" /> <!-- browser toolbar color on mobile -->
+
+<!-- Structured data (JSON-LD) for improved rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Newdich Technology",
+  "url": "https://newdich.tech/institute,
+  "logo": "https://newdich.tech/newdich-institute.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/newdichtechnology",
+    "https://x.com/newdichtech",
+    "https://facebook.com/newdich"
+  ],
+  "description": "ursue a career in tech at Newdich Technology Institute and be certified. hands-on courses & training with Certifications in Software Engineering, Data Science, AI & Machine Learning, Cybersecurity, IoT & Robotics, Blockchain/Web3 & Cloud. Enroll now."
+}
+</script>
+
+
+  <style>
+    :root{
+      --navy:#0a192f;
+      --panel:#071425;
+      --blue:#0070d8;
+      --light-blue:#48b0ff;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --white:#f8fafc;
+      --card-shadow: 0 10px 30px rgba(0,112,216,0.14);
+      --radius:14px;
+      --accent-glow: 0 6px 30px rgba(72,176,255,0.16);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%;height:auto}
+
+    /* ---------- Layout container ---------- */
+    .wrap{max-width:1200px;margin:0 auto;padding:28px}
+
+    /* ---------- Header / Nav ---------- */
+    header.site-header{
+      position:sticky;top:0;z-index:999;
+      background:linear-gradient(180deg, rgba(4,12,25,0.65), rgba(4,12,25,0.85));
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{
+      width:56px;height:56px;border-radius:12px;overflow:hidden;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),var(--light-blue));
+      box-shadow:var(--accent-glow);
+      animation:logoPulse 3.6s ease-in-out infinite;
+    }
+    .brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand h1{font-size:16px;margin:0;font-weight:700}
+    nav.main-nav{display:flex;gap:18px;align-items:center}
+    nav.main-nav a{color:var(--muted);font-weight:600;padding:8px;border-radius:8px}
+    nav.main-nav a:hover{color:var(--white);background:rgba(255,255,255,0.02)}
+
+    .cta-header .btn { padding:10px 16px;border-radius:10px;font-weight:700;border:0;cursor:pointer }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--blue),var(--light-blue));
+      color:var(--white);
+      box-shadow:var(--card-shadow);
+    }
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+    @keyframes logoPulse {
+      0%{ transform:translateY(0); filter:drop-shadow(0 0 8px rgba(72,176,255,0.18)) }
+      50%{ transform:translateY(-4px); filter:drop-shadow(0 0 20px rgba(72,176,255,0.26)) }
+      100%{ transform:translateY(0); filter:drop-shadow(0 0 8px rgba(72,176,255,0.18)) }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:56px 0}
+    .hero-left{padding-right:12px}
+    .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(72,176,255,0.08),rgba(72,176,255,0.03));color:var(--light-blue);font-weight:700;margin-bottom:14px}
+    .hero h1{font-size:40px;line-height:1.02;margin:0 0 14px;color:var(--white)}
+    .hero p{color:var(--muted);font-size:17px;max-width:680px;margin-bottom:20px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .stat-row{display:flex;gap:12px;margin-top:18px}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;text-align:center;min-width:110px}
+    .stat h3{margin:6px 0 0;color:var(--white)}
+
+    .hero-right{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    }
+    .hero-logo-wrap{display:flex;align-items:center;justify-content:center;gap:12px;flex-direction:column;padding:14px}
+    .hero-logo{width:180px;height:180px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--light-blue));box-shadow:var(--accent-glow);animation:logoPulse 3.6s infinite}
+    .hero-logo img{width:84%;height:84%;object-fit:contain}
+
+    /* ---------- Programs grid ---------- */
+    .section-title{color:var(--light-blue);font-size:20px;margin-bottom:14px}
+    .programs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
+    .program{background:var(--panel);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .28s,box-shadow .28s;display:flex;gap:12px;align-items:flex-start}
+    .program:hover{transform:translateY(-8px);box-shadow:var(--accent-glow)}
+    .program .icon{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(90deg,rgba(72,176,255,0.08),rgba(72,176,255,0.02));font-size:22px}
+    .program h4{margin:0 0 6px}
+    .program p{margin:0;color:var(--muted);font-size:14px}
+
+    /* ---------- Meet our mentors ---------- */
+    .mentors{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px}
+    .mentor{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:18px;border-radius:12px;text-align:center;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .3s,box-shadow .3s;
+    }
+    .mentor:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(72,176,255,0.12)}
+    .avatar{width:96px;height:96px;border-radius:999px;margin:0 auto 12px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--light-blue));box-shadow:var(--accent-glow)}
+    .avatar img{width:90%;height:90%;object-fit:cover;border-radius:999px}
+    .mentor h5{margin:6px 0 0;font-size:16px}
+    .mentor small{display:block;color:var(--muted);margin-top:6px}
+
+    /* ---------- Testimonials ---------- */
+    .testimonials{display:flex;gap:14px;margin-top:18px}
+    .testimonial{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .testimonial p{color:var(--muted);font-size:14px;margin-bottom:10px}
+    .testimonial strong{display:block;color:var(--white);margin-top:8px}
+
+    /* ---------- Gallery (simple grid + modal) ---------- */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .gallery .thumb{height:120px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));overflow:hidden;display:block;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .gallery img{width:100%;height:100%;object-fit:cover}
+
+    /* ---------- Contact ---------- */
+    .contact-card{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+    .contact-card .card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)}
+    .contact-card .card p{color:var(--muted);font-size:14px}
+
+    /* ---------- Footer ---------- */
+    footer.site-footer{margin-top:36px;background:linear-gradient(180deg, rgba(3,9,18,0.9), rgba(3,9,18,0.98));padding:20px;border-top:1px solid rgba(255,255,255,0.02)}
+    footer .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1200px;margin:0 auto;padding:8px 28px}
+    footer .foot-inner .left{display:flex;align-items:center;gap:12px}
+    footer small{color:var(--muted)}
+
+    /* ---------- Modal (Apply) ---------- */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,12,0.6);z-index:9999}
+    .modal.show{display:flex}
+    .modal-box{width:94%;max-width:640px;background:linear-gradient(180deg,#0f2746,#071532);padding:26px;border-radius:16px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 60px rgba(2,6,23,0.7)}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .modal-head h3{margin:0;color:var(--light-blue)}
+    .close{background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-grid input,.form-grid select,.form-grid textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+    .form-grid textarea{grid-column:1/3;min-height:120px}
+    .modal .submit-row{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:8px}
+
+    /* ---------- small screens ---------- */
+    @media (max-width: 1000px){
+      .hero{grid-template-columns:1fr; padding-top:90px}
+      .programs{grid-template-columns:repeat(2,1fr)}
+      .mentors{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .contact-card{grid-template-columns:1fr}
+      nav.main-nav{display:none}
+    }
+    @media (max-width:600px){
+      .programs{grid-template-columns:1fr}
+      .hero h1{font-size:28px}
+      .mentors{grid-template-columns:1fr}
+      .nav-inner{padding:12px}
+      .brand h1{font-size:15px}
+    }
+
+    /* ---------- scroll reveal helper (initial state) ---------- */
+    .reveal{opacity:0;transform:translateY(28px);transition:all 0.8s cubic-bezier(.16,.84,.08,1)}
+    .reveal.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <img src="/newdich-institute.png" alt="Newdich Institute logo">
+        </div>
+        <div>
+          <h1>Newdich Technology Institute</h1>
+          <div style="font-size:12px;color:var(--muted)">Train · Build · Launch</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <a href="#programs">Programs</a>
+        <a href="#mentors">Mentors</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#apply" id="applyNav">Enroll</a>
+        <a class="btn btn-primary" href="#contact" style="padding:8px 12px">Contact</a>
+      </nav>
+
+      <div class="cta-header" style="display:flex;gap:8px;align-items:center">
+        <button class="btn btn-ghost" id="mobileApply">Enroll</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Hands-on · Industry-led · Career-track</div>
+        <h1>Empowering the next generation of tech builders</h1>
+        <p>Newdich Technology Institute delivers intensive, project-based programs in Software Engineering, Data Science, AI, Cybersecurity, IoT & Robotics, Blockchain and Cloud. Learn with mentors, build real products, and get career support.</p>
+
+        <div class="cta-row">
+          <button class="btn-primary" id="applyNow">Enroll Now</button>
+          <a class="btn-ghost" href="#programs">View Programs</a>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="small">Graduates</div>
+            <h3>1,200+</h3>
+          </div>
+          <div class="stat">
+            <div class="small">Placement</div>
+            <h3>80%+</h3>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="hero-logo-wrap">
+          <div class="hero-logo" aria-hidden="true">
+            <img src="/assets/1000003347.png" alt="Newdich Institute emblem">
+          </div>
+          <div style="text-align:center">
+            <div style="font-weight:700;font-size:16px">Start a career in tech</div>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Bootcamps, part-time courses & professional certificates</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="reveal">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;min-width:120px;text-align:center">
+              <div style="font-size:18px">⏱️</div>
+              <div style="font-size:13px;color:var(--muted)">Flexible schedules</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;min-width:120px;text-align:center">
+              <div style="font-size:18px">🧑‍💻</div>
+              <div style="font-size:13px;color:var(--muted)">Real projects</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs" class="reveal" aria-labelledby="programs-heading">
+      <div class="section-title" id="programs-heading">Our Programs</div>
+      <div class="programs">
+        <article class="program">
+          <div class="icon">💻</div>
+          <div>
+            <h4>Software Engineering</h4>
+            <p>Full-stack web & mobile development, system design, testing and deployment — build production-ready apps.</p>
+          </div>
+        </article>
+
+        <article class="program">
+          <div class="icon">🧠</div>
+          <div>
+            <h4>Data Science</h4>
+            <p>Data wrangling, visualization, statistical modeling and ML pipelines to drive actionable insights.</p>
+          </div>
+        </article>
+
+        <article class="program">
+          <div class="icon">🤖</div>
+          <div>
+            <h4>AI & Machine Learning</h4>
+            <p>Supervised & unsupervised learning, deep learning, MLOps and model deployment for real-world tasks.</p>
+          </div>
+        </article>
+
+        <article class="program">
+          <div class="icon">🔐</div>
+          <div>
+            <h4>Cybersecurity</h4>
+            <p>Security fundamentals, threat modeling, pentesting and incident response to secure critical systems.</p>
+          </div>
+        </article>
+
+        <article class="program">
+          <div class="icon">⚙️</div>
+          <div>
+            <h4>IoT & Robotics</h4>
+            <p>Embedded systems, sensors, robotics integration and cloud-connected solutions for automation.</p>
+          </div>
+        </article>
+
+        <article class="program">
+          <div class="icon">⛓️</div>
+          <div>
+            <h4>Blockchain & Cloud</h4>
+            <p>Smart contracts, decentralized apps, and cloud-native infrastructure for scalable solutions.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why" class="reveal">
+      <div class="section-title">Why Choose Newdich Institute</div>
+      <div class="why-us" style="margin-top:18px">
+        <div class="card reveal">
+          <h3>Industry Mentors</h3>
+          <p style="color:var(--muted)">Instructors from top tech companies teach practical skills and review projects.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Project Portfolio</h3>
+          <p style="color:var(--muted)">Every student ships real systems to show in portfolios and interviews.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Career Support</h3>
+          <p style="color:var(--muted)">CV reviews, interview prep and employer introductions.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Flexible Paths</h3>
+          <p style="color:var(--muted)">Part-time, full-time, and remote-friendly learning options.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENTORS -->
+    <section id="mentors" class="reveal" aria-labelledby="mentors-heading">
+      <div class="section-title" id="mentors-heading">Meet Our Mentors</div>
+      <div class="mentors">
+        <div class="mentor">
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%230070d8'/></svg>" alt="Mentor 1"></div>
+          <h5>Jane Doe</h5>
+          <small>Lead ML Engineer</small>
+        </div>
+        <div class="mentor">
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%2348b0ff'/></svg>" alt="Mentor 2"></div>
+          <h5>John Smith</h5>
+          <small>Senior Backend Engineer</small>
+        </div>
+        <div class="mentor">
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23007fbe'/></svg>" alt="Mentor 3"></div>
+          <h5>Amina Bello</h5>
+          <small>Cybersecurity Lead</small>
+        </div>
+        <div class="mentor">
+          <div class="avatar"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23006fa8'/></svg>" alt="Mentor 4"></div>
+          <h5>Chinedu Okoro</h5>
+          <small>IoT & Robotics</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="reveal">
+      <div class="section-title">What our graduates say</div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>"The bootcamp was intense but life-changing. I built two production apps and landed my first developer job within 3 months."</p>
+          <strong>— Ada, Software Engineer</strong>
+        </div>
+        <div class="testimonial">
+          <p>"Mentors were top-notch and the projects were practical. I now lead a data team and use the skills daily."</p>
+          <strong>— Emeka, Data Analyst</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="reveal">
+      <div class="section-title">Gallery</div>
+      <div class="gallery">
+        <a class="thumb" data-src="/assets/1000003347.png"><img src="/assets/1000003347.png" alt="Gallery 1"></a>
+        <a class="thumb" data-src="/assets/1000003347.png"><img src="/assets/1000003347.png" alt="Gallery 2"></a>
+        <a class="thumb" data-src="/assets/1000003347.png"><img src="/assets/1000003347.png" alt="Gallery 3"></a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="section-title">Contact & Enroll</div>
+      <div class="contact-card">
+        <div class="card">
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:newdichngr@gmail.com" style="color:var(--light-blue)">newdichngr@gmail.com</a></p>
+          <p>Phone: <a href="tel:+2347032095559" style="color:var(--light-blue)">+234 7032095559</a></p>
+          <p style="color:var(--muted)">Office: Okitipupa, Ondo-State, Nigeria</p>
+        </div>
+        <div class="card">
+          <h4>Quick Enrollment</h4>
+          <p style="color:var(--muted)">Click apply to open the short form. We'll reach out to schedule an interview.</p>
+          <div style="margin-top:10px">
+            <button class="btn-primary" id="applyQuick">Open Enrollment Form</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="foot-inner">
+      <div class="left">
+        <div class="logo" style="width:46px;height:46px;border-radius:10px;overflow:hidden">
+          <img src="/newdich-institute.png" alt="Newdich logo" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div>
+          <div style="font-weight:700">Newdich Technology Institute</div>
+          <small>© 2025 Newdich Technology</small>
+        </div>
+      </div>
+      <div>
+        <small style="color:var(--muted)">Follow us on LinkedIn • Twitter • Facebook</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: APPLY FORM -->
+  <div id="applyModal" class="modal" aria-hidden="true" role="dialog" aria-label="Enroll at Newdich Institute">
+    <div class="modal-box" role="document">
+      <div class="modal-head">
+        <h3>Enroll at Newdich Institute</h3>
+        <button class="close" id="closeApply" aria-label="Close">&times;</button>
+      </div>
+
+      <form id="applyForm" class="form-grid" autocomplete="off">
+        <input type="text" name="name" placeholder="Full name" required />
+        <input type="email" name="email" placeholder="Email address" required />
+        <select name="course" required>
+          <option value="" disabled selected>Course of interest</option>
+          <option>Software Engineering</option>
+          <option>Data Science</option>
+          <option>AI & Machine Learning</option>
+          <option>Cybersecurity</option>
+          <option>IoT & Robotics</option>
+          <option>Blockchain & Cloud</option>
+        </select>
+        <input type="tel" name="phone" placeholder="Phone (optional)" />
+        <textarea name="message" placeholder="Tell us about your background (optional)"></textarea>
+
+        <div class="submit-row" style="grid-column:1/3">
+          <div style="flex:1;color:var(--muted);align-self:center">We respect your privacy — your info is not shared.</div>
+          <div style="display:flex;gap:8px">
+            <button type="button" class="btn-ghost" id="cancelApply">Cancel</button>
+            <button type="submit" class="btn-primary">Send Application</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIMPLE LIGHTBOX FOR GALLERY -->
+  <div id="lightbox" class="modal" aria-hidden="true" role="dialog" style="display:none">
+    <div class="modal-box" style="max-width:900px;padding:10px;background:transparent;border:none;box-shadow:none">
+      <button id="closeLight" class="close" style="position:absolute;right:34px;top:20px;font-size:28px;color:var(--white)">&times;</button>
+      <img id="lightboxImg" src="" alt="gallery" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.04)">
+    </div>
+  </div>
+
+  <script>
+    // ---------- Utilities ----------
+    const revealElements = () => {
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 80){
+          el.classList.add('show');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealElements);
+    window.addEventListener('load', () => { revealElements(); staggerReveal(); });
+
+    // Stagger reveal for cards inside sections
+    function staggerReveal(){
+      document.querySelectorAll('.program, .card, .mentor, .testimonial, .gallery .thumb').forEach((el,i)=>{
+        setTimeout(()=> el.classList.add('show'), 120 + i*80);
+      });
+    }
+
+    // ---------- Modal logic ----------
+    const applyNow = document.getElementById('applyNow');
+    const applyModal = document.getElementById('applyModal');
+    const closeApply = document.getElementById('closeApply');
+    const cancelApply = document.getElementById('cancelApply');
+    const applyQuick = document.getElementById('applyQuick');
+    const mobileApply = document.getElementById('mobileApply');
+    const applyNav = document.getElementById('applyNav');
+
+    function openApply(){ applyModal.classList.add('show'); applyModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function closeApplyModal(){ applyModal.classList.remove('show'); applyModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+    applyNow && applyNow.addEventListener('click', openApply);
+    applyQuick && applyQuick.addEventListener('click', openApply);
+    mobileApply && mobileApply.addEventListener('click', openApply);
+    applyNav && applyNav.addEventListener('click', (e)=>{ e.preventDefault(); openApply(); });
+
+    closeApply && closeApply.addEventListener('click', closeApplyModal);
+    cancelApply && cancelApply.addEventListener('click', closeApplyModal);
+    applyModal.addEventListener('click', (e)=>{ if(e.target === applyModal) closeApplyModal(); });
+
+    // ---------- Apply form (mail fallback) ----------
+    const applyForm = document.getElementById('applyForm');
+    applyForm && applyForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(applyForm);
+      const name = fd.get('name') || 'Applicant';
+      const email = fd.get('email') || '';
+      const course = fd.get('course') || '';
+      const phone = fd.get('phone') || '';
+      const message = fd.get('message') || '';
+
+      // Mailto fallback (opens user's mail client)
+      const subject = encodeURIComponent('Institute application from ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCourse: ${course}\n\nMessage:\n${message}`);
+      const mailto = `mailto:info@newdichtechnology.com?subject=${subject}&body=${body}`;
+
+      // show small success state then open mail client
+      closeApplyModal();
+      setTimeout(()=> {
+        alert('Thank you! Your application draft is ready in your mail client. You can edit and send it — or we can integrate a backend API for direct submissions.');
+        window.location.href = mailto;
+        applyForm.reset();
+      }, 280);
+    });
+
+    // ---------- Gallery lightbox ----------
+    document.querySelectorAll('.gallery .thumb').forEach(thumb=>{
+      thumb.addEventListener('click', ()=>{
+        const src = thumb.dataset.src || thumb.querySelector('img').src;
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = src;
+        lb.style.display = 'flex'; lb.classList.add('show'); document.body.style.overflow='hidden';
+      });
+    });
+    document.getElementById('closeLight').addEventListener('click', ()=>{
+      const lb = document.getElementById('lightbox'); lb.style.display='none'; lb.classList.remove('show'); document.body.style.overflow='';
+    });
+    document.getElementById('lightbox').addEventListener('click', (e)=>{ if(e.target.id === 'lightbox') { document.getElementById('lightbox').style.display='none'; document.body.style.overflow=''; } });
+
+    // ---------- small helper: smooth nav links ----------
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length > 1){
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
