@@ -162,6 +162,36 @@
       transform: scale(1.05);
     }
 
+
+    /*FOR CHAT US BUTTON*/
+    /* Floating chat button */
+    .chat-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, #0070d8, #48b0ff);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 112, 216, 0.4);
+      transition: all 0.3s ease;
+      z-index: 9999; /* stays above everything */
+    }
+
+    .chat-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(72, 176, 255, 0.6);
+    }
+
+    /* Optional chat icon */
+    .chat-button::before {
+      content: "💬";
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
@@ -461,7 +491,7 @@
           <p class="small">You can reach out to us via the following means</p>
           <ul style="padding-left:18px;color:var(--muted)">
             <li>Call/WhatsApp : <a href="https://wa.me/+2347032095559" style="color: wheat; text-decoration: underline; cursor: pointer;">+2347032095559</a></li>
-            <li>Email: newdichngr@gmail.com</li>
+            <li>Email: <a href="mailto:newdichngr@gmail.com">newdichngr@gmail.com</a></li>
             <li>Linkedln: <a href="https://www.linkedin.com/company/newdichtechnology" style="color: wheat; text-decoration: underline; cursor: pointer;" target="_blank">LinkedIn</a></li>
             <li>X(Twitter): <a href="https://x.com/newdichtech" style="color: wheat; text-decoration: underline; cursor: pointer;" target="_blank">Twitter(X)</a> </li>
             <li>Facebook: <a href="https://facebook.com/newdich" style="color: wheat; text-decoration: underline; cursor: pointer;" target="_blank">Facebook</a></li>
@@ -475,7 +505,13 @@
 
       <div style="margin-top: 100px;"></div>
 
-
+      
+      <button class="chat-button" onclick="openChat()">Chat with us</button>
+      <script>
+        function openChat() {
+          window.location.href="https://wa.me/+2347032095559";
+        }
+      </script>
 
 
 
