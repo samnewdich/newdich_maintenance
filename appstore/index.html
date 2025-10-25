@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Newdich App Store</title>
+  <meta name="description" content="Newdich App Store — discover, download and install trusted apps built by Newdich Technology."/>
+  <style>
+    /* ============================
+       Newdich App Store — Single File
+       ============================ */
+    :root{
+      --navy: #0a192f;
+      --panel: #071426;
+      --blue: #0070d8;
+      --light: #48b0ff;
+      --muted: #93a6bf;
+      --glass: rgba(255,255,255,0.03);
+      --white: #f8fafc;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --radius: 14px;
+      --card-shadow: 0 10px 30px rgba(2,112,216,0.12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--navy),#071023);color:var(--white);-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    img{display:block;max-width:100%;height:auto}
+
+    /* ---------- header ---------- */
+    header{
+      position:sticky;top:0;z-index:1000;background:rgba(2,6,18,0.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)
+    }
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo-wrap{width:56px;height:56px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));box-shadow:0 8px 30px rgba(72,176,255,0.12);display:grid;place-items:center}
+    .logo-wrap img{width:86%;height:86%;object-fit:contain}
+    .brand h1{font-size:18px;margin:0}
+    nav.controls{display:flex;align-items:center;gap:12px}
+    .search {
+      display:flex;align-items:center;background:rgba(255,255,255,0.02);border-radius:999px;padding:8px 12px;gap:8px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .search input{background:transparent;border:0;color:var(--white);outline:none;width:220px}
+    .chip {padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer;font-weight:600}
+    .chip.active{background:linear-gradient(90deg,var(--blue),var(--light));color:var(--white);box-shadow:var(--card-shadow)}
+    .sort{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* ---------- hero ---------- */
+    .hero{max-width:1200px;margin:18px auto 10px;padding:18px;display:flex;align-items:center;gap:20px}
+    .hero-left{flex:1}
+    .eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(72,176,255,0.06),rgba(72,176,255,0.02));color:var(--light);font-weight:700;font-size:13px}
+    .hero h2{font-size:28px;margin:12px 0;color:var(--white)}
+    .hero p{color:var(--muted);max-width:720px}
+
+    .hero-right{width:220px;padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03);display:grid;place-items:center}
+    .hero-right .logo-lg{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center;box-shadow:0 10px 40px rgba(72,176,255,0.12);animation:logoFloat 4s ease-in-out infinite}
+    @keyframes logoFloat {0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+    /* ---------- content layout ---------- */
+    .content{max-width:1200px;margin:0 auto;padding:10px 20px 80px;display:grid;grid-template-columns:1fr 340px;gap:24px}
+    .left-col{min-width:0}
+    .right-col{position:relative}
+
+    /* ---------- store controls ---------- */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .filters .tag{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .filters .tag.active{background:linear-gradient(90deg,var(--blue),var(--light));color:#031018;box-shadow:var(--card-shadow);font-weight:700}
+
+    /* ---------- app grid ---------- */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--card-shadow);transition:transform .26s,box-shadow .26s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(72,176,255,0.12)}
+    .thumb{width:64px;height:64px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center;color:#021426;font-weight:700}
+    .card h4{margin:0 0 6px}
+    .card p{color:var(--muted);font-size:13px;margin:0 0 10px}
+    .meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+    .app-actions{display:flex;gap:8px;margin-top:10px}
+
+    .btn {padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-install{background:linear-gradient(90deg,var(--blue),var(--light));color:var(--white)}
+    .btn-details{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--white)}
+
+    /* ---------- sidebar ---------- */
+    .sidebar-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .category-list{display:flex;flex-direction:column;gap:8px}
+    .category-list a{padding:10px;border-radius:10px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.03)}
+    .category-list a:hover{background:rgba(255,255,255,0.02);color:var(--light)}
+
+    /* ---------- pagination ---------- */
+    .pagination{display:flex;gap:8px;justify-content:center;margin-top:18px}
+    .page-btn{padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .page-btn.active{background:linear-gradient(90deg,var(--blue),var(--light));color:#021426}
+
+    /* ---------- app modal ---------- */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(2,6,18,0.6),rgba(2,6,18,0.8));z-index:2000;padding:20px}
+    .modal.show{display:flex}
+    .modal-box{width:100%;max-width:900px;background:linear-gradient(180deg,#071b33,#041526);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(2,6,23,0.7)}
+    .modal-grid{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
+    .modal-thumb{width:220px;height:220px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center}
+    .modal h3{margin-top:0}
+    .specs{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:8px}
+    .install-row{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .install-link{padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--blue),var(--light));color:var(--white);font-weight:800;border:0;cursor:pointer}
+
+    /* ---------- floating chat ---------- */
+    .chat {
+      position:fixed;right:20px;bottom:20px;background:linear-gradient(135deg,var(--blue),var(--light));padding:12px 16px;border-radius:999px;color:#021426;font-weight:800;z-index:3000;border:none;box-shadow:0 12px 40px rgba(72,176,255,0.14);cursor:pointer
+    }
+
+    /* responsive */
+    @media (max-width: 1000px){
+      .content{grid-template-columns:1fr 300px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-right{display:none}
+      .search input{width:140px}
+    }
+    @media (max-width:700px){
+      .nav{padding:12px}
+      .content{grid-template-columns:1fr;padding:12px}
+      .grid{grid-template-columns:1fr}
+      .brand h1{display:none}
+      .search input{width:110px}
+      .left-col{order:1}
+      .right-col{order:2}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo-wrap"><img src="/assets/1000003347.png" alt="Newdich logo"></div>
+        <div>
+          <h1>Newdich App Store</h1>
+          <div style="font-size:12px;color:var(--muted)">Trusted apps & installers</div>
+        </div>
+      </div>
+
+      <div class="controls" style="display:flex;align-items:center;gap:12px">
+        <div class="search" role="search" aria-label="Search apps">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#cfe8ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="searchInput" type="search" placeholder="Search apps, categories..." aria-label="Search apps">
+        </div>
+        <div class="filters" id="quickFilters" style="display:flex;gap:8px">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="productivity">Productivity</button>
+          <button class="chip" data-filter="finance">Finance</button>
+          <button class="chip" data-filter="education">Education</button>
+          <button class="chip" data-filter="utilities">Utilities</button>
+        </div>
+        <select id="sortSelect" class="sort" aria-label="Sort apps">
+          <option value="popular">Most popular</option>
+          <option value="newest">Newest</option>
+          <option value="rating">Top rated</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="content" role="main">
+    <div class="left-col">
+      <section class="hero">
+        <div class="hero-left">
+          <div class="eyebrow">Official • Curated • Secure</div>
+          <h2>Discover apps built by Newdich Technology</h2>
+          <p>Browse production-ready, audited applications — install on your device or test them in the cloud. Every app here is verified and maintained by the Newdich team.</p>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <div class="hero-right-inner" style="text-align:center">
+            <div class="logo-lg" style="width:120px;height:120px;border-radius:18px;display:grid;place-items:center">
+              <img src="/assets/1000003347.png" alt="Newdich logo small" style="width:78%;height:78%;object-fit:contain"/>
+            </div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Verified Publisher</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h3 style="margin:0;color:var(--light)">Featured Apps</h3>
+          <div style="color:var(--muted);font-size:13px" id="resultCount">8 apps</div>
+        </div>
+
+        <div class="filters" style="margin-top:10px">
+          <button class="tag" data-cat="all">All</button>
+          <button class="tag" data-cat="productivity">Productivity</button>
+          <button class="tag" data-cat="education">Education</button>
+          <button class="tag" data-cat="finance">Finance</button>
+          <button class="tag" data-cat="utilities">Utilities</button>
+        </div>
+
+        <div class="grid" id="appGrid" style="margin-top:14px">
+          <!-- App cards injected by JS -->
+        </div>
+
+        <div class="pagination" id="pagination" style="margin-top:18px"></div>
+      </section>
+    </div>
+
+    <aside class="right-col">
+      <div class="sidebar-card">
+        <h4 style="margin:0 0 8px;color:var(--light)">Categories</h4>
+        <div class="category-list">
+          <a href="#" data-cat="all">All Apps</a>
+          <a href="#" data-cat="productivity">Productivity</a>
+          <a href="#" data-cat="education">Education</a>
+          <a href="#" data-cat="finance">Finance</a>
+          <a href="#" data-cat="utilities">Utilities</a>
+        </div>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:14px">
+        <h4 style="margin:0 0 8px;color:var(--light)">Top Rated</h4>
+        <ol style="padding-left:18px;color:var(--muted);margin:0;">
+          <li style="margin-bottom:8px">Newdich Pay — 4.9 ⭐</li>
+          <li style="margin-bottom:8px">Academy Lab — 4.8 ⭐</li>
+          <li style="margin-bottom:8px">MeterX — 4.7 ⭐</li>
+        </ol>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:14px;text-align:center">
+        <h4 style="margin:0 0 8px;color:var(--light)">Publish an App</h4>
+        <p style="color:var(--muted);font-size:13px">Want to publish an installable app on Newdich App Store? Contact our developer platform team.</p>
+        <button class="btn btn-primary" style="margin-top:8px" onclick="window.location.href='mailto:apps@newdichtechnology.com'">Contact</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer style="padding:18px 20px;background:linear-gradient(180deg,#051327,#021021);border-top:1px solid rgba(255,255,255,0.02)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:46px;height:46px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center">
+          <img src="/assets/1000003347.png" alt="Newdich" style="width:86%;height:86%;object-fit:contain" />
+        </div>
+        <div>
+          <div style="font-weight:700">Newdich App Store</div>
+          <small style="color:var(--muted)">© 2025 Newdich Technology</small>
+        </div>
+      </div>
+      <div style="color:var(--muted)">Built with care • Secure installs</div>
+    </div>
+  </footer>
+
+  <!-- App detail modal -->
+  <div id="appModal" class="modal" role="dialog" aria-hidden="true" aria-label="App details">
+    <div class="modal-box" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div id="modalThumb" class="modal-thumb">ND</div>
+          <div>
+            <h3 id="modalTitle">App title</h3>
+            <div class="specs"><span id="modalCategory">Category</span> • <span id="modalRating">4.9</span> ⭐</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-details" onclick="closeModal()">Close</button>
+          <button class="install-link" id="modalInstall">Install</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" id="modalDesc">Detailed description of the app will go here. It explains main features, permissions, and installation instructions.</div>
+
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;color:var(--muted)">Size: <strong id="modalSize">12 MB</strong></div>
+        <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;color:var(--muted)">Version: <strong id="modalVersion">1.2.0</strong></div>
+        <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;color:var(--muted)">Updated: <strong id="modalUpdated">2025-01-15</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="chat" onclick="openChat()" aria-label="Chat support">Chat with us</button>
+
+  <script>
+    /* ======================
+       Sample app data & UI
+       ====================== */
+    const APPS = [
+      { id: 'pay', title:'Newdich Pay', desc:'Secure payments & reconciliation — built for businesses.', category:'finance', rating:4.9, size:'18 MB', version:'2.0.1', updated:'2025-02-01', icon:'NP' },
+      { id: 'academy', title:'Academy Lab', desc:'Interactive coding labs for students and learners.', category:'education', rating:4.8, size:'24 MB', version:'1.5.0', updated:'2025-01-05', icon:'AL' },
+      { id: 'meterx', title:'MeterX', desc:'Smart metering dashboard for utilities and IoT devices.', category:'utilities', rating:4.7, size:'34 MB', version:'3.1.8', updated:'2024-12-11', icon:'MX' },
+      { id: 'tasker', title:'TaskFlow', desc:'Manage tasks and teams with flexible workflows.', category:'productivity', rating:4.6, size:'12 MB', version:'1.2.3', updated:'2025-03-02', icon:'TF' },
+      { id: 'vault', title:'SafeVault', desc:'Encrypted document vault and file manager.', category:'utilities', rating:4.5, size:'45 MB', version:'2.2.2', updated:'2024-11-20', icon:'SV' },
+      { id: 'ledger', title:'LedgerPro', desc:'Accounting and invoicing for small businesses.', category:'finance', rating:4.4, size:'20 MB', version:'1.9.0', updated:'2025-02-12', icon:'LP' },
+      { id: 'learn', title:'CodeCamp', desc:'Guided bootcamp lessons and projects.', category:'education', rating:4.8, size:'28 MB', version:'2.0.0', updated:'2025-01-30', icon:'CC' },
+      { id: 'devops', title:'InfraOps', desc:'Deploy, monitor and scale cloud infra with ease.', category:'productivity', rating:4.6, size:'40 MB', version:'1.7.4', updated:'2025-02-20', icon:'IO' }
+    ];
+
+    const appGrid = document.getElementById('appGrid');
+    const searchInput = document.getElementById('searchInput');
+    const chipButtons = document.querySelectorAll('.chip');
+    const filterTags = document.querySelectorAll('.filters .tag');
+    const sortSelect = document.getElementById('sortSelect');
+    const resultCount = document.getElementById('resultCount');
+
+    // pagination
+    let currentPage = 1;
+    const PAGE_SIZE = 6;
+
+    // current filters
+    let currentFilter = 'all';
+    let currentQuery = '';
+    let currentSort = 'popular';
+
+    function renderGrid(){
+      const filtered = APPS.filter(a=>{
+        const matchesFilter = (currentFilter==='all') || (a.category===currentFilter);
+        const q = currentQuery.trim().toLowerCase();
+        const matchesQ = !q || a.title.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q) || a.category.toLowerCase().includes(q);
+        return matchesFilter && matchesQ;
+      });
+
+      // sort
+      if(currentSort === 'newest'){
+        filtered.sort((a,b)=> new Date(b.updated) - new Date(a.updated));
+      } else if(currentSort === 'rating'){
+        filtered.sort((a,b)=> b.rating - a.rating);
+      } // popular default order is as-is
+
+      const total = filtered.length;
+      resultCount.textContent = `${total} app${total!==1?'s':''}`;
+
+      // pagination
+      const start = (currentPage-1)*PAGE_SIZE;
+      const pageApps = filtered.slice(start, start+PAGE_SIZE);
+
+      appGrid.innerHTML = pageApps.map(app => `
+        <article class="card" data-id="${app.id}">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="thumb">${app.icon}</div>
+            <div style="flex:1">
+              <h4>${app.title}</h4>
+              <p>${app.desc}</p>
+              <div class="meta"><span>${app.category}</span> • <strong>${app.rating}</strong></div>
+            </div>
+          </div>
+          <div class="app-actions" style="justify-content:flex-end">
+            <button class="btn btn-details" onclick="openDetails('${app.id}')">Details</button>
+            <button class="btn btn-install" onclick="installApp('${app.id}')">Install</button>
+          </div>
+        </article>`).join('');
+
+      renderPagination(Math.ceil(total / PAGE_SIZE));
+    }
+
+    function renderPagination(pages){
+      const container = document.getElementById('pagination');
+      if(pages <= 1){ container.innerHTML=''; return; }
+      let html = '';
+      for(let i=1;i<=pages;i++){
+        html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function goPage(p){ currentPage = p; renderGrid(); window.scrollTo({top:200,behavior:'smooth'}); }
+
+    // search & filter handlers
+    searchInput.addEventListener('input', (e)=>{ currentQuery = e.target.value; currentPage = 1; renderGrid(); });
+    chipButtons.forEach(b=>{
+      b.addEventListener('click', ()=> {
+        chipButtons.forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        currentFilter = b.dataset.filter;
+        currentPage = 1;
+        renderGrid();
+      });
+    });
+    filterTags.forEach(t=>{
+      t.addEventListener('click', ()=> {
+        filterTags.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        currentFilter = t.dataset.cat;
+        currentPage = 1;
+        renderGrid();
+      });
+    });
+    sortSelect.addEventListener('change', (e)=>{ currentSort = e.target.value; renderGrid(); });
+
+    // modal logic
+    const appModal = document.getElementById('appModal');
+    function openDetails(id){
+      const app = APPS.find(a=>a.id===id);
+      if(!app) return;
+      document.getElementById('modalThumb').textContent = app.icon;
+      document.getElementById('modalTitle').textContent = app.title;
+      document.getElementById('modalCategory').textContent = app.category;
+      document.getElementById('modalRating').textContent = app.rating;
+      document.getElementById('modalDesc').textContent = app.desc + ' — This app supports offline mode, secure sync, and regular updates from Newdich.';
+      document.getElementById('modalSize').textContent = app.size;
+      document.getElementById('modalVersion').textContent = app.version;
+      document.getElementById('modalUpdated').textContent = app.updated;
+      document.getElementById('modalInstall').onclick = ()=> installApp(id);
+      appModal.classList.add('show'); appModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    }
+    function closeModal(){ appModal.classList.remove('show'); appModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    appModal.addEventListener('click', (e)=>{ if(e.target===appModal) closeModal(); });
+
+    // install action (demo)
+    function installApp(id){
+      const app = APPS.find(a=>a.id===id);
+      if(!app) return;
+      // For demo: open mailto or trigger a fake download. Replace with real installer link.
+      const confirmed = confirm(`Install ${app.title} (${app.size})? Click OK to continue.`);
+      if(!confirmed) return;
+      // simulate install action — here open mailto or a direct link to an APK/installer
+      // Example: window.location.href = '/downloads/'+app.id+'.apk';
+      alert(`${app.title} install started. (In production, this would download or trigger the installer.)`);
+      closeModal();
+    }
+
+    // chat
+    function openChat(){
+      // integrate with real chat provider or fallback to mailto
+      window.open('https://wa.me/?text=Hi%20Newdich%20Support%20I%20need%20help%20with%20an%20app', '_blank');
+    }
+
+    // keyboard escape closes modal
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeModal(); } });
+
+    // initial render
+    renderGrid();
+  </script>
+</body>
+</html>
