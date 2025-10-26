@@ -196,6 +196,9 @@
 </head>
 <body>
   <div class="container">
+
+    <div id="mobile-menu-screen" style="display: none; margin-left: 2px; width: 90%;"></div>
+
     <header>
       <div class="brand">
         <div class="logo">
@@ -216,8 +219,6 @@
         <a class="btn btn-primary" href="#contact" style="color: wheat;">Get Started</a>
       </nav>
       <button class="hamburger" aria-label="Open menu" id="menuBtn">☰</button>
-      <button class="hamburger" aria-label="Close menu" id="closemenuBtn" style="display: none;">X</button>
-      <div id="mobile-menu-screen" style="display: none; margin-left: 2px; width: 90%;"></div>
     </header>
 
     <main>
@@ -552,9 +553,11 @@
     // Mobile nav toggle
     const menuBtn = document.getElementById('menuBtn');
     menuBtn.addEventListener('click', ()=>{
+      document.getElementById("menuBtn").style.display="none";
       document.getElementById("mobile-menu-screen").style.display="block";
       document.getElementById("mobile-menu-screen").innerHTML=`
         <ul>
+          <li><button id="closemenuBtn">x Close Menu</button></li>
           <li><a href="/market">Marketplace</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="/institute">Institute</a></li>
@@ -567,6 +570,7 @@
     });
 
     document.getElementById("closemenuBtn").addEventListener('click', ()=>{
+      document.getElementById("menuBtn").style.display="block";
       document.getElementById("mobile-menu-screen").display="none";
     });
 
