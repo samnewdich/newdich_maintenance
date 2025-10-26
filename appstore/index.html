@@ -278,8 +278,8 @@
        Sample app data & UI
        ====================== */
     const APPS = [
-      { id: 'pay', title:'Newdich Pay', desc:'Secure payments & reconciliation — built for businesses.', category:'finance', rating:4.9, size:'18 MB', version:'2.0.1', updated:'2025-02-01', icon:'NP' },
-      { id: 'academy', title:'Academy Lab', desc:'Interactive coding labs for students and learners.', category:'education', rating:4.8, size:'24 MB', version:'1.5.0', updated:'2025-01-05', icon:'AL' },
+      { id: 'pay', title:'Newdich Pay', desc:'Secure payments & reconciliation — built for businesses.', category:'finance', rating:4.9, size:'18 MB', version:'2.0.1', updated:'2025-02-01', icon:'/appstore/apps/coinslid.webp' },
+      { id: 'academy', title:'Academy Lab', desc:'Interactive coding labs for students and learners.', category:'education', rating:4.8, size:'24 MB', version:'1.5.0', updated:'2025-01-05', icon:'/appstore/apps/twetacoin.webp' },
       { id: 'meterx', title:'MeterX', desc:'Smart metering dashboard for utilities and IoT devices.', category:'utilities', rating:4.7, size:'34 MB', version:'3.1.8', updated:'2024-12-11', icon:'MX' },
       { id: 'tasker', title:'TaskFlow', desc:'Manage tasks and teams with flexible workflows.', category:'productivity', rating:4.6, size:'12 MB', version:'1.2.3', updated:'2025-03-02', icon:'TF' },
       { id: 'vault', title:'SafeVault', desc:'Encrypted document vault and file manager.', category:'utilities', rating:4.5, size:'45 MB', version:'2.2.2', updated:'2024-11-20', icon:'SV' },
@@ -329,7 +329,7 @@
       appGrid.innerHTML = pageApps.map(app => `
         <article class="card" data-id="${app.id}">
           <div style="display:flex;gap:12px;align-items:center">
-            <div class="thumb"><img src="apps/coinslid.webp" alt="Coinslid" />${app.icon}</div>
+            <div class="thumb"><img src="${app.icon}" alt="Coinslid" /></div>
             <div style="flex:1">
               <h4>${app.title}</h4>
               <p>${app.desc}</p>
