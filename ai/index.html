@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Newdich AI — Conversational Assistant</title>
+  <meta name="description" content="Newdich AI — conversational assistant for code, data, and automation. Demo interface." />
+  <style>
+    :root{
+      --navy:#0a192f;
+      --panel:#071427;
+      --blue:#0070d8;
+      --light:#48b0ff;
+      --muted:#9fb0c9;
+      --glass: rgba(255,255,255,0.03);
+      --white:#f8fafc;
+      --success:#22c55e;
+      --danger:#ef4444;
+      --radius:12px;
+      --easing: cubic-bezier(.16,.84,.08,1);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:inherit}
+
+    /* ---------- layout ---------- */
+    .app {
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      height:100vh;
+      gap:18px;
+      padding:18px;
+    }
+
+    /* mobile: single column */
+    @media (max-width:880px){
+      .app{grid-template-columns:1fr; padding:12px;}
+    }
+
+    /* ---------- sidebar ---------- */
+    .sidebar {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:0;
+    }
+
+    .sidebar .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo-box{
+      width:52px;height:52px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center;box-shadow:0 10px 30px rgba(72,176,255,0.12);
+      animation:logoFloat 3.6s ease-in-out infinite;
+    }
+    .logo-box img{width:86%;height:86%;object-fit:contain}
+
+    @keyframes logoFloat{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+
+    .brand h2{font-size:15px;margin:0;font-weight:700}
+    .brand small{display:block;color:var(--muted);font-size:12px}
+
+    .new-btn{
+      margin-top:6px;
+      display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--light));color:#021426;border:none;cursor:pointer;font-weight:700;
+      box-shadow:0 14px 42px rgba(72,176,255,0.12);
+    }
+
+    .convos{overflow:auto;padding-right:6px;flex:1;margin-top:6px}
+    .convo-item{
+      display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer;
+      transition:background .18s var(--easing),transform .18s var(--easing);
+      color:var(--muted);
+      border:1px solid transparent;
+    }
+    .convo-item:hover{background:rgba(255,255,255,0.01);transform:translateY(-2px)}
+    .convo-item.active{background:linear-gradient(90deg,rgba(72,176,255,0.06),rgba(72,176,255,0.02));color:var(--white);border:1px solid rgba(72,176,255,0.06)}
+
+    .convo-item .dot{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,0.02);font-weight:700;color:var(--light)}
+
+    .sidebar-foot{display:flex;gap:8px;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid rgba(255,255,255,0.02);font-size:13px;color:var(--muted)}
+
+    .model-select{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .model-select button{padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);cursor:pointer}
+    .model-select button.active{background:linear-gradient(90deg,var(--blue),var(--light));color:#021426;font-weight:700}
+
+    /* ---------- main chat area ---------- */
+    .chat-wrap{
+      display:flex;flex-direction:column;height:100vh;min-height:0;border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border:1px solid rgba(255,255,255,0.03);
+      overflow:hidden;
+    }
+
+    .chat-header{
+      display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,0.02);
+      background:linear-gradient(180deg, rgba(255,255,255,0.005), transparent);
+    }
+    .chat-header .title{display:flex;gap:12px;align-items:center}
+    .chat-header .title h3{margin:0;font-size:18px}
+    .chat-header .title small{color:var(--muted);display:block}
+
+    .messages{
+      padding:20px;
+      overflow:auto;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    /* message bubble styles */
+    .msg{
+      max-width:82%;
+      padding:12px 14px;
+      border-radius:12px;
+      line-height:1.45;
+      position:relative;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    .msg.user{
+      margin-left:auto;
+      background:linear-gradient(90deg,var(--blue),var(--light));
+      color:#021426;
+      border-bottom-right-radius:6px;
+    }
+    .msg.assistant{
+      margin-right:auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--white);
+    }
+    .msg .meta{font-size:12px;color:var(--muted);margin-top:8px}
+
+    /* typing indicator */
+    .typing{display:inline-flex;align-items:center;gap:6px}
+    .dot-typing{width:8px;height:8px;border-radius:999px;background:var(--muted);animation:blink 1.4s infinite}
+    .dot-typing:nth-child(2){animation-delay:.18s}
+    .dot-typing:nth-child(3){animation-delay:.36s}
+    @keyframes blink{0%{opacity:.2}50%{opacity:1}100%{opacity:.2}}
+
+    /* composer */
+    .composer{
+      padding:12px;
+      border-top:1px solid rgba(255,255,255,0.02);
+      display:flex;gap:10px;align-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.005), transparent);
+    }
+    .composer .input{
+      flex:1;
+      display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)
+    }
+    .composer input[type="text"]{flex:1;background:transparent;border:0;color:var(--white);outline:none;font-size:15px}
+    .icon-btn{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:18px;padding:8px;border-radius:8px}
+    .send-btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--light));border:0;color:#021426;font-weight:800;cursor:pointer}
+
+    /* small screens tweak */
+    @media (max-width:880px){
+      .convos{display:flex;gap:8px;overflow:auto}
+      .convo-item{min-width:180px;flex-shrink:0}
+      .chat-wrap{height:calc(100vh - 150px)}
+      .messages{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="Newdich AI chat interface">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand" role="banner">
+        <div class="logo-box" aria-hidden="true"><img src="/assets/1000003347.png" alt="Newdich logo"></div>
+        <div>
+          <h2>Newdich AI</h2>
+          <small>Conversational Assistant</small>
+        </div>
+      </div>
+
+      <button class="new-btn" id="newConvBtn" aria-label="Start new conversation">＋ New Conversation</button>
+
+      <!-- conversations list -->
+      <div class="convos" id="convos" role="list" aria-label="Conversations">
+        <!-- items inserted by JS -->
+      </div>
+
+      <!-- model selector & examples -->
+      <div style="margin-top:8px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Model</div>
+        <div class="model-select" role="radiogroup" aria-label="Choose model">
+          <button class="active" data-model="nd-simple">ND-Simple</button>
+          <button data-model="nd-pro">ND-Pro</button>
+          <button data-model="nd-code">ND-Code</button>
+        </div>
+      </div>
+
+      <div class="sidebar-foot" style="margin-top:10px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <small>Dark · Newdich</small>
+        </div>
+        <div style="text-align:right">
+          <small style="color:var(--muted)">v1.0</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CHAT AREA -->
+    <main class="chat-wrap" aria-live="polite">
+      <header class="chat-header">
+        <div class="title">
+          <div style="width:48px;height:48px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--light));display:grid;place-items:center"><img src="/assets/1000003347.png" alt="" style="width:82%;height:82%;object-fit:contain"></div>
+          <div>
+            <h3 id="chatTitle">Welcome to Newdich AI</h3>
+            <small id="chatSub">Ask about code, data science, and product ideas — type below and press Enter.</small>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="icon-btn" id="clearBtn" title="Clear conversation">🗑️</button>
+          <button class="icon-btn" id="toggleSidebar" title="Toggle sidebar">☰</button>
+        </div>
+      </header>
+
+      <section class="messages" id="messages" tabindex="0" aria-label="Messages">
+        <!-- messages injected by JS -->
+      </section>
+
+      <div class="composer" role="region" aria-label="Message composer">
+        <div class="input" role="search">
+          <button class="icon-btn" id="attachBtn" title="Attach">📎</button>
+          <input id="promptInput" type="text" placeholder="Send a message — e.g. 'Explain transformers in simple terms' (Press Enter to send)" aria-label="Message input" />
+          <button class="icon-btn" id="voiceBtn" title="Voice input">🎤</button>
+        </div>
+        <button class="send-btn" id="sendBtn" aria-label="Send message">Send</button>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ======== Simple front-end chat app for Newdich AI ========
+    // Data structure: conversations stored in localStorage
+    const STORAGE_KEY = 'newdich_ai_conversations_v1';
+
+    // Elements
+    const convosEl = document.getElementById('convos');
+    const newConvBtn = document.getElementById('newConvBtn');
+    const messagesEl = document.getElementById('messages');
+    const promptInput = document.getElementById('promptInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
+
+    // In-memory state
+    let conversations = [];
+    let activeId = null;
+
+    // Utilities
+    const uid = (n=6)=>Math.random().toString(36).slice(2,2+n);
+    const now = ()=>new Date().toISOString();
+
+    // Load from storage
+    function load(){
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw){ conversations = []; createConversation('Welcome'); return; }
+        conversations = JSON.parse(raw);
+        if(!conversations || !conversations.length) createConversation('Welcome');
+        activeId = conversations[0].id;
+        renderConvos();
+        setActive(activeId);
+      } catch(e) {
+        console.error('load failed', e);
+        conversations = []; createConversation('Welcome');
+      }
+    }
+
+    function save(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
+    }
+
+    // create new conversation
+    function createConversation(title='New conversation'){
+      const c = { id: uid(8), title, createdAt: now(), messages: [
+        { id:uid(6), role:'assistant', text:'Hello — I am Newdich AI. How can I help you today?', ts: now() }
+      ]};
+      conversations.unshift(c);
+      save();
+      renderConvos();
+      setActive(c.id);
+    }
+
+    // render conversation list
+    function renderConvos(){
+      convosEl.innerHTML = '';
+      conversations.forEach(conv=>{
+        const div = document.createElement('div');
+        div.className = 'convo-item' + (conv.id === activeId ? ' active' : '');
+        div.setAttribute('role','listitem');
+        div.innerHTML = `<div class="dot">${conv.title.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase()}</div>
+                         <div style="flex:1"><div style="font-weight:700">${conv.title}</div><div style="font-size:12px;color:var(--muted)">${new Date(conv.createdAt).toLocaleString()}</div></div>`;
+        div.addEventListener('click', ()=> setActive(conv.id));
+        convosEl.appendChild(div);
+      });
+    }
+
+    // set active conversation
+    function setActive(id){
+      activeId = id;
+      renderConvos();
+      const conv = conversations.find(c=>c.id===id);
+      if(!conv) return;
+      document.getElementById('chatTitle').textContent = conv.title;
+      messagesEl.innerHTML = '';
+      conv.messages.forEach(m => appendMessageToDOM(m));
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    // append a message to DOM
+    function appendMessageToDOM(msg){
+      const el = document.createElement('div');
+      el.className = 'msg ' + (msg.role === 'user' ? 'user' : 'assistant');
+      el.dataset.id = msg.id;
+      el.innerHTML = `<div class="body">${msg.text}</div><div class="meta">${new Date(msg.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>`;
+      messagesEl.appendChild(el);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    // add message to conversation
+    function addMessage(role, text){
+      const conv = conversations.find(c=>c.id===activeId);
+      if(!conv) return;
+      const m = { id: uid(6), role, text, ts: now() };
+      conv.messages.push(m);
+      save();
+      appendMessageToDOM(m);
+      return m;
+    }
+
+    // simulate assistant response with typing animation
+    function simulateAssistantReply(userMsg){
+      // show typing indicator bubble
+      const typingId = uid(6);
+      const typingEl = document.createElement('div');
+      typingEl.className = 'msg assistant';
+      typingEl.dataset.id = typingId;
+      typingEl.innerHTML = `<div class="body typing"><span class="dot-typing"></span><span class="dot-typing"></span><span class="dot-typing"></span></div><div class="meta">${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>`;
+      messagesEl.appendChild(typingEl);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      // fake thinking time
+      setTimeout(()=> {
+        // generate a placeholder reply — replace this block with your real API call
+        const replyText = generateAssistantText(userMsg);
+        // remove typing indicator
+        typingEl.remove();
+        // add to convo and DOM
+        const m = { id: uid(6), role:'assistant', text: replyText, ts: now() };
+        const conv = conversations.find(c=>c.id===activeId);
+        conv.messages.push(m);
+        save();
+        appendMessageToDOM(m);
+      }, 900 + Math.random()*1400);
+    }
+
+    // placeholder assistant text generator (basic, useful for demo)
+    function generateAssistantText(userMsg){
+      // quick heuristics: if user asked about code, return code-style answer; else echo with enhancements
+      const q = userMsg.toLowerCase();
+      if(q.includes('code') || q.includes('javascript') || q.includes('python')){
+        return "Here’s a short code example you can try:\n\n```js\n// Example (simulate):\nfunction greet(name){\n  return `Hello, ${name}!`;\n}\nconsole.log(greet('Newdich'));\n```\n\nIf you'd like, I can expand this into a full project scaffold.";
+      }
+      if(q.includes('explain') || q.includes('what is')){
+        return "Sure — here's a short explanation: " + userMsg + " — In short, it means you can approach it by focusing on the fundamentals, building small prototypes, and iterating with tests.";
+      }
+      return "Thanks — I received your message: \"" + userMsg + "\". Tell me if you'd like a short summary, code example, or actionable steps.";
+    }
+
+    // send message flow
+    function sendMessage(){
+      const txt = promptInput.value.trim();
+      if(!txt) return;
+      // add user message
+      addMessage('user', txt);
+      promptInput.value = '';
+      // simulate assistant reply
+      simulateAssistantReply(txt);
+    }
+
+    // clear conversation
+    function clearConversation(){
+      if(!confirm('Clear this conversation?')) return;
+      const conv = conversations.find(c=>c.id===activeId);
+      if(conv){
+        conv.messages = [{ id: uid(6), role:'assistant', text:'Hello — ready when you are!', ts: now() }];
+        save();
+        setActive(activeId);
+      }
+    }
+
+    // new conversation handler
+    newConvBtn.addEventListener('click', ()=> createConversation('New conversation'));
+
+    // send on enter
+    promptInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' && !e.shiftKey){
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    sendBtn.addEventListener('click', sendMessage);
+
+    // clear button
+    clearBtn.addEventListener('click', clearConversation);
+
+    // toggle sidebar (mobile)
+    toggleSidebarBtn.addEventListener('click', ()=>{
+      const sidebar = document.querySelector('.sidebar');
+      if(window.innerWidth <= 880){
+        sidebar.style.display = (sidebar.style.display === 'none') ? 'flex' : 'none';
+      } else {
+        // on desktop collapse/expand small?
+        if(sidebar.style.width === '72px'){
+          sidebar.style.width = '';
+        } else {
+          sidebar.style.width = '72px';
+        }
+      }
+    });
+
+    // model selection
+    document.querySelectorAll('.model-select button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.model-select button').forEach(x=>x.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // initial load
+    load();
+
+    // accessibility: focus message area when sending
+    sendBtn.addEventListener('click', ()=> {
+      messagesEl.focus();
+    });
+
+    // expose for debug (optional)
+    window.nd = {
+      conversations, save, load, createConversation, setActive, addMessage
+    };
+  </script>
+</body>
+</html>
