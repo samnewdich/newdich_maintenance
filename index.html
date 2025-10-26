@@ -206,12 +206,13 @@
           <div class="small">Engineering • IoT • AI • Training</div>
         </div>
       </div>
-      <nav aria-label="Main navigation">
-        <a href="#services">Services</a>
+      <nav aria-label="Main navigation" id="mobile-menu">
+        <a href="/market">Marketplace</a>
         <a href="#projects">Projects</a>
         <a href="/institute">Institute</a>
+        <a href="/ai">Newdich AI</a>
+        <a href="/appstore">App Store</a>
         <a href="#contact">Contact</a>
-        <a href="">App Store</a>
         <a class="btn btn-primary" href="#contact" style="color: wheat;">Get Started</a>
       </nav>
       <button class="hamburger" aria-label="Open menu" id="menuBtn">☰</button>
@@ -549,15 +550,16 @@
     // Mobile nav toggle
     const menuBtn = document.getElementById('menuBtn');
     let menuOpen = false;
-    menuBtn && menuBtn.addEventListener('click', ()=>{
+    menuBtn.addEventListener('click', ()=>{
       menuOpen = !menuOpen;
       if(menuOpen){
         const nav = document.createElement('nav');
         nav.id='mobileNav';
         nav.style.position='fixed';nav.style.top='70px';nav.style.right='18px';nav.style.background='linear-gradient(180deg, rgba(6,10,20,0.96), rgba(6,10,20,0.98))';nav.style.padding='14px';nav.style.borderRadius='12px';nav.style.boxShadow='0 10px 30px rgba(2,6,23,0.6)';
-        nav.innerHTML = '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#services">Services</a>'+
-                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#projects">Projects</a>'+
-                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#institute">Institute</a>'+
+        nav.innerHTML = '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="/market">Marketplace</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="/institute">Institute</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="/ai">Newdich AI</a>'+
+                        '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="/appstore">App Store</a>'+
                         '<a style="display:block;padding:8px 0;color:var(--muted);text-decoration:none" href="#contact">Contact</a>';
         document.body.appendChild(nav);
       } else {
