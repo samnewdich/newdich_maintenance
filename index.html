@@ -556,23 +556,23 @@
       document.getElementById("menuBtn").style.display="none";
       document.getElementById("mobile-menu-screen").style.display="block";
       document.getElementById("mobile-menu-screen").innerHTML=`
-        <ul>
-          <li><button id="closemenuBtn">x Close Menu</button></li>
-          <li><a href="/market">Marketplace</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="/institute">Institute</a></li>
-          <li><a href="/ai">Newdich AI</a></li>
-          <li><a href="/appstore">App Store</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a class="btn btn-primary" href="#contact" style="color: wheat;">Get Started</a></li>
+        <ul style="list-style:none;">
+          <li style="padding:7px;"><button onclick="closeMenuBtn()">x Close Menu</button></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="/market">Marketplace</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="#projects">Projects</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="/institute">Institute</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="/ai">Newdich AI</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="/appstore">App Store</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" href="#contact">Contact</a></li>
+          <li style="padding:7px;"><a style="text-decoration:none; color:wheat; cursor:pointer;" class="btn btn-primary" href="#contact" style="color: wheat;">Get Started</a></li>
         </ul
       `;
     });
 
-    document.getElementById("closemenuBtn").addEventListener('click', ()=>{
+    function closeMenuBtn(){
       document.getElementById("menuBtn").style.display="block";
       document.getElementById("mobile-menu-screen").display="none";
-    });
+    }
 
     // Simple form handling — no backend, creates mailto fallback and local validation
     const form = document.getElementById('contactForm');
