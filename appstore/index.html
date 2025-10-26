@@ -171,6 +171,7 @@
       .search input{width:110px}
       .left-col{order:1}
       .right-col{order:2}
+      .only-mobile-ni{display: none;}
     }
   </style>
 </head>
@@ -190,6 +191,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#cfe8ff" stroke-width="2" stroke-linecap="round"/></svg>
           <input id="searchInput" type="search" placeholder="Search apps, categories..." aria-label="Search apps">
         </div>
+        <span class="only-mobile-ni">
         <div class="filters" id="quickFilters" style="display:flex;gap:8px">
           <button class="chip active" data-filter="all">All</button>
           <button class="chip" data-filter="productivity">Productivity</button>
@@ -202,6 +204,7 @@
           <option value="newest">Newest</option>
           <option value="rating">Top rated</option>
         </select>
+        </span>
       </div>
     </div>
   </header>
