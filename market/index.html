@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Newdich Software Marketplace</title>
+  <meta name="description" content="Buy, demo, and customize software built by Newdich Technology. Pay in USD, try demos, and download after purchase."/>
+  <style>
+    :root{
+      --navy:#0a192f;
+      --panel:#071427;
+      --blue:#0070d8;
+      --cyan:#48b0ff;
+      --muted:#9fb0c9;
+      --glass: rgba(255,255,255,0.02);
+      --white:#f8fafc;
+      --success:#22c55e;
+      --danger:#ef4444;
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--navy);color:var(--white)}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:120;background:linear-gradient(180deg, rgba(3,9,18,0.6), rgba(3,9,18,0.85));backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo-box{width:56px;height:56px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;box-shadow:0 8px 30px rgba(72,176,255,0.12);animation:logoPulse 3.6s ease-in-out infinite}
+    @keyframes logoPulse{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+    .brand h1{font-size:16px;margin:0;font-weight:700}
+    nav.controls{display:flex;align-items:center;gap:12px}
+    .search{display:flex;align-items:center;background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03)}
+    .search input{background:transparent;border:0;color:var(--white);outline:none;width:220px}
+    .chip{padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer;font-weight:700}
+    .chip.active{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#021426;box-shadow:0 12px 40px rgba(72,176,255,0.12)}
+    .sort{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:10px;color:var(--muted)}
+
+    /* Layout */
+    .wrap{max-width:1200px;margin:18px auto;padding:0 20px}
+    .hero{display:flex;gap:20px;align-items:center;padding:18px 0}
+    .hero-left{flex:1}
+    .eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(72,176,255,0.06),rgba(72,176,255,0.02));color:var(--cyan);font-weight:800;font-size:13px}
+    .hero h2{font-size:28px;margin:12px 0;color:var(--cyan)}
+    .hero p{color:var(--muted);max-width:760px}
+
+    /* Content */
+    .content{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .left{min-width:0}
+    .right{position:relative}
+
+    /* Filters */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .filters .tag{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .filters .tag.active{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#021426;font-weight:800}
+
+    /* App grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .app{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 30px rgba(0,0,0,0.6);transition:transform .24s,box-shadow .24s}
+    .app:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.6)}
+    .app-top{display:flex;gap:12px;align-items:center}
+    .thumb{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font-weight:800;color:#021426}
+    .app h3{margin:0;font-size:18px}
+    .app p{color:var(--muted);font-size:13px;margin:6px 0}
+    .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px}
+    .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+
+    .btn{padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:800}
+    .btn-primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#021426}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--white)}
+
+    /* Sidebar */
+    .sidebar-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .category-list{display:flex;flex-direction:column;gap:8px}
+    .category-list a{padding:10px;border-radius:8px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.03)}
+    .category-list a:hover{background:rgba(255,255,255,0.02);color:var(--cyan)}
+
+    /* Pagination */
+    .pagination{display:flex;gap:8px;justify-content:center;margin-top:14px}
+    .page{padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .page.active{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#021426;font-weight:800}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(2,6,12,0.6),rgba(2,6,12,0.8));z-index:2000;padding:18px}
+    .modal.show{display:flex}
+    .modal-box{width:100%;max-width:920px;background:linear-gradient(180deg,#071b33,#041426);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.7)}
+    .modal-grid{display:grid;grid-template-columns:260px 1fr;gap:16px}
+    .modal-thumb{width:230px;height:230px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font-weight:900;color:#021426}
+    .modal h3{margin-top:0}
+    .specs{display:flex;gap:12px;color:var(--muted);font-size:13px;margin-top:6px}
+
+    /* Demo iframe */
+    .demo-frame{width:100%;height:420px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:#031226;overflow:hidden}
+
+    /* Purchase */
+    .receipt{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* Floating chat */
+    .chat{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--blue),var(--cyan));padding:12px 16px;border-radius:999px;color:#021426;font-weight:800;z-index:3000;border:none;box-shadow:0 12px 40px rgba(72,176,255,0.14);cursor:pointer}
+
+    /* Footer */
+    footer{margin-top:24px;padding:18px 20px;background:linear-gradient(180deg,#041026,#021021);border-top:1px solid rgba(255,255,255,0.02)}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .content{grid-template-columns:1fr 300px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .search input{width:140px}
+      .hero h2{font-size:22px}
+    }
+    @media (max-width:700px){
+      .nav-inner{padding:12px}
+      .content{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .brand h1{display:none}
+      .search input{width:110px}
+      .modal-grid{grid-template-columns:1fr}
+      .modal-thumb{width:100%;height:160px}
+      .demo-frame{height:260px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo-box"><img src="/assets/1000003347.png" alt="Newdich logo" style="width:86%;height:86%;object-fit:contain"/></div>
+        <div>
+          <h1>Newdich Software Marketplace</h1>
+          <div style="font-size:12px;color:var(--muted)">Buy, demo & customize apps — pay in USD</div>
+        </div>
+      </div>
+
+      <nav class="controls" aria-label="Marketplace controls">
+        <div class="search" role="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#cfe8ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="search" type="search" placeholder="Search apps, features or categories">
+        </div>
+
+        <div id="filterChips" style="display:flex;gap:8px">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="enterprise">Enterprise</button>
+          <button class="chip" data-filter="saas">SaaS</button>
+        </div>
+
+        <select id="sort" class="sort" title="Sort apps">
+          <option value="popular">Most popular</option>
+          <option value="newest">Newest</option>
+          <option value="price_low">Price: Low → High</option>
+          <option value="price_high">Price: High → Low</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" role="main">
+    <!-- hero -->
+    <section class="hero" aria-label="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Verified • Enterprise-ready • Customizable</div>
+        <h2>Buy software built by Newdich — demo before you buy</h2>
+        <p>Discover production-grade applications with demos you can try in your browser. Purchase with USD and download installers or request customizations for your business.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="btn btn-primary" onclick="openUpload()">Publish Your Software</button>
+        <button class="btn btn-ghost" onclick="openContact()">Contact Sales</button>
+      </div>
+    </section>
+
+    <div class="content">
+      <!-- left: product list -->
+      <div class="left">
+        <section aria-labelledby="featured-heading">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <h3 id="featured-heading" style="margin:0;color:var(--cyan)">Featured Software</h3>
+            <div style="color:var(--muted);" id="count">0 items</div>
+          </div>
+
+          <div class="filters" id="categoryFilters" aria-label="Category filters">
+            <button class="tag" data-cat="all">All</button>
+            <button class="tag" data-cat="productivity">Productivity</button>
+            <button class="tag" data-cat="finance">Finance</button>
+            <button class="tag" data-cat="education">Education</button>
+            <button class="tag" data-cat="utilities">Utilities</button>
+          </div>
+
+          <div class="grid" id="grid">
+            <!-- items inserted by JS -->
+          </div>
+
+          <div class="pagination" id="pager"></div>
+        </section>
+      </div>
+
+      <!-- right: sidebar -->
+      <aside class="right">
+        <div class="sidebar-card">
+          <h4 style="margin:0 0 8px;color:var(--cyan)">Top sellers</h4>
+          <ol style="padding-left:18px;color:var(--muted);margin:0;">
+            <li style="margin:6px 0">Newdich Pay — $249</li>
+            <li style="margin:6px 0">MeterX — $199</li>
+            <li style="margin:6px 0">Academy Lab — $149</li>
+          </ol>
+        </div>
+
+        <div class="sidebar-card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px;color:var(--cyan)">Need custom features?</h4>
+          <p style="color:var(--muted)">Request a quote for customizations, integrations, or deployment assistance.</p>
+          <button class="btn btn-primary" style="margin-top:10px" onclick="openContact()">Request Quote</button>
+        </div>
+
+        <div class="sidebar-card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px;color:var(--cyan)">Payments</h4>
+          <p style="color:var(--muted)">We accept USD. Demo is free. Purchase and get immediate download links or request hosted installs.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:46px;height:46px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center">
+          <img src="/assets/1000003347.png" alt="Newdich" style="width:86%;height:86%;object-fit:contain"/>
+        </div>
+        <div>
+          <div style="font-weight:700">Newdich Software Marketplace</div>
+          <small style="color:var(--muted)">© 2025 Newdich Technology</small>
+        </div>
+      </div>
+      <div style="color:var(--muted)">Secure • Audited • Maintained</div>
+    </div>
+  </footer>
+
+  <!-- App Detail Modal (Demo + Buy) -->
+  <div id="detailModal" class="modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-label="App details">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:12px">
+        <div class="modal-grid" style="width:100%">
+          <div>
+            <div id="modalThumb" class="modal-thumb">ND</div>
+          </div>
+          <div>
+            <h3 id="modalTitle">App Title</h3>
+            <div class="specs"><span id="modalCategory">Category</span> • <span id="modalRating">4.9</span> ⭐</div>
+            <p id="modalShort" style="color:var(--muted);margin-top:8px">Short blurb about the app.</p>
+
+            <div style="margin-top:12px;display:flex;gap:10px">
+              <button class="btn btn-primary" id="openDemoBtn">Open Demo</button>
+              <button class="btn btn-ghost" id="buyBtn">Buy — <span id="modalPrice">$0</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute;right:18px;top:12px">
+          <button class="btn btn-ghost" onclick="closeDetail()">Close</button>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <h4 style="margin:0 0 8px;color:var(--cyan)">About this software</h4>
+        <div id="modalDesc" style="color:var(--muted)">Longer description with features, tech stack, and licensing information.</div>
+      </div>
+
+      <!-- Demo embed (hidden initially) -->
+      <div id="demoWrap" style="margin-top:16px;display:none">
+        <h4 style="margin-bottom:8px;color:var(--cyan)">Live Demo</h4>
+        <div class="demo-frame" id="demoFrameWrap">
+          <!-- iframe inserted by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase Modal -->
+  <div id="buyModal" class="modal" aria-hidden="true">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Purchase</h3>
+        <button class="btn btn-ghost" onclick="closeBuy()">Close</button>
+      </div>
+
+      <form id="buyForm" style="margin-top:12px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1">
+            <label style="display:block;font-weight:700;margin-bottom:6px">Product</label>
+            <div id="buyProduct" style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.02)"></div>
+          </div>
+          <div style="width:140px">
+            <label style="display:block;font-weight:700;margin-bottom:6px">Price (USD)</label>
+            <input id="buyPrice" type="number" value="0" step="0.01" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)"/>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label style="display:block;font-weight:700;margin-bottom:6px">Your Email</label>
+          <input id="buyerEmail" type="email" required placeholder="you@company.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)"/>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+          <button type="button" class="btn btn-ghost" onclick="closeBuy()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Pay $<span id="buyPriceLabel">0</span></button>
+        </div>
+      </form>
+
+      <div id="receiptWrap" style="margin-top:12px;display:none">
+        <h4 style="color:var(--cyan)">Receipt</h4>
+        <div class="receipt" id="receiptArea"></div>
+        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn btn-primary" id="downloadBtn">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating chat -->
+  <button class="chat" onclick="openChat()">Chat with us</button>
+
+  <script>
+    // ========== Sample product data ==========
+    const PRODUCTS = [
+      { id:'newdich-pay', title:'Newdich Pay', desc:'Secure payments & reconciliation for fintech and merchants.', category:'finance', price:249.00, rating:4.9, demo:'/demos/newdich-pay/index.html', icon:'NP' },
+      { id:'academylab', title:'Academy Lab', desc:'Interactive training labs for learners and bootcamps.', category:'education', price:149.00, rating:4.8, demo:'/demos/academy-lab/index.html', icon:'AL' },
+      { id:'meterx', title:'MeterX', desc:'Utility metering dashboard with analytics and IoT integration.', category:'utilities', price:199.00, rating:4.7, demo:'/demos/meterx/index.html', icon:'MX' },
+      { id:'taskflow', title:'TaskFlow', desc:'Team workflows and project management for agile teams.', category:'productivity', price:99.00, rating:4.6, demo:'/demos/taskflow/index.html', icon:'TF' },
+      { id:'vault', title:'SafeVault', desc:'Encrypted file vault and secure sharing for enterprises.', category:'utilities', price:179.00, rating:4.5, demo:'/demos/safevault/index.html', icon:'SV' },
+      { id:'ledgerpro', title:'LedgerPro', desc:'Accounting & invoicing platform for SMEs.', category:'finance', price:219.00, rating:4.4, demo:'/demos/ledgerpro/index.html', icon:'LP' },
+      { id:'codecamp', title:'CodeCamp', desc:'Project-based coding bootcamp platform.', category:'education', price:129.00, rating:4.8, demo:'/demos/codecamp/index.html', icon:'CC' },
+      { id:'infraops', title:'InfraOps', desc:'Cloud deployment & monitoring orchestration.', category:'enterprise', price:299.00, rating:4.6, demo:'/demos/infraops/index.html', icon:'IO' }
+    ];
+
+    // state
+    let currentFilter = 'all';
+    let currentQuery = '';
+    let currentSort = 'popular';
+    let currentPage = 1;
+    const PAGE_SIZE = 6;
+
+    // DOM references
+    const grid = document.getElementById('grid');
+    const countEl = document.getElementById('count');
+    const searchInput = document.getElementById('search');
+    const chips = document.querySelectorAll('.chip');
+    const tags = document.querySelectorAll('.tag');
+    const sortSelect = document.getElementById('sort');
+
+    // init
+    render();
+
+    // ========== render & helpers ==========
+    function matches(product){
+      const q = currentQuery.trim().toLowerCase();
+      const inFilter = currentFilter === 'all' || product.category === currentFilter;
+      const inQuery = !q || product.title.toLowerCase().includes(q) || product.desc.toLowerCase().includes(q) || product.category.toLowerCase().includes(q);
+      return inFilter && inQuery;
+    }
+
+    function sortProducts(arr){
+      if(currentSort === 'newest') return arr; // sample data doesn't have dates; keep as-is
+      if(currentSort === 'price_low') return arr.sort((a,b)=>a.price-b.price);
+      if(currentSort === 'price_high') return arr.sort((a,b)=>b.price-a.price);
+      if(currentSort === 'rating') return arr.sort((a,b)=>b.rating-a.rating);
+      return arr; // popular/default
+    }
+
+    function render(){
+      let filtered = PRODUCTS.filter(matches);
+      filtered = sortProducts(filtered.slice());
+      const total = filtered.length;
+      countEl.textContent = `${total} items`;
+
+      // pagination
+      const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      currentPage = Math.min(currentPage, pages);
+      const start = (currentPage-1)*PAGE_SIZE;
+      const pageItems = filtered.slice(start, start+PAGE_SIZE);
+
+      grid.innerHTML = pageItems.map(p => appCardHtml(p)).join('');
+      renderPager(pages);
+    }
+
+    function appCardHtml(p){
+      return `
+        <article class="app" data-id="${p.id}">
+          <div class="app-top">
+            <div class="thumb" aria-hidden="true">${p.icon}</div>
+            <div style="flex:1">
+              <h3>${p.title}</h3>
+              <p>${p.desc}</p>
+              <div class="meta"><span style="text-transform:capitalize">${p.category}</span> • <strong>${p.rating}</strong> ⭐ • <span style="font-weight:800">$${p.price.toFixed(2)}</span></div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-ghost" onclick="openDetail('${p.id}')">Details</button>
+            <button class="btn btn-primary" onclick="quickBuy('${p.id}')">Buy</button>
+          </div>
+        </article>`;
+    }
+
+    function renderPager(pages){
+      const pager = document.getElementById('pager');
+      if(pages <= 1){ pager.innerHTML = ''; return; }
+      let html = '';
+      for(let i=1;i<=pages;i++){
+        html += `<button class="page ${i===currentPage ? 'active' : ''}" onclick="goto(${i})">${i}</button>`;
+      }
+      pager.innerHTML = html;
+    }
+
+    function goto(p){ currentPage = p; render(); window.scrollTo({top:200, behavior:'smooth'}); }
+
+    // ========== interactions ==========
+    searchInput.addEventListener('input', e => { currentQuery = e.target.value; currentPage = 1; render(); });
+    chips.forEach(c=> c.addEventListener('click', ()=> {
+      chips.forEach(x=>x.classList.remove('active'));
+      c.classList.add('active');
+      currentFilter = c.dataset.filter;
+      currentPage = 1;
+      render();
+    }));
+    tags.forEach(t=> t.addEventListener('click', ()=> {
+      tags.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      currentFilter = t.dataset.cat;
+      currentPage = 1;
+      render();
+    }));
+    sortSelect.addEventListener('change', e=> { currentSort = e.target.value; render(); });
+
+    // ========== detail modal ==========
+    const detailModal = document.getElementById('detailModal');
+    function openDetail(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      document.getElementById('modalThumb').textContent = p.icon;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalCategory').textContent = p.category;
+      document.getElementById('modalRating').textContent = p.rating;
+      document.getElementById('modalShort').textContent = p.desc;
+      document.getElementById('modalPrice').textContent = `$${p.price.toFixed(2)}`;
+      document.getElementById('modalDesc').textContent = `${p.desc} — Features: real-time sync, secure auth, and enterprise support. Contact sales for customization.`;
+      // hide demo initially
+      document.getElementById('demoWrap').style.display = 'none';
+      // attach handlers
+      document.getElementById('openDemoBtn').onclick = ()=> openDemo(p);
+      document.getElementById('buyBtn').onclick = ()=> quickBuy(p.id);
+      // show modal
+      detailModal.classList.add('show'); detailModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    }
+    function closeDetail(){ detailModal.classList.remove('show'); detailModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; removeDemo(); }
+
+    // demo open (iframe)
+    function openDemo(product){
+      const demoWrap = document.getElementById('demoWrap');
+      const demoFrameWrap = document.getElementById('demoFrameWrap');
+      demoFrameWrap.innerHTML = ''; // remove existing
+      // For demos we allow external links — here we simulate with about:blank or the provided demo path if available.
+      const src = product.demo || 'about:blank';
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.style.border = '0';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.background = '#031226';
+      demoFrameWrap.appendChild(iframe);
+      demoWrap.style.display = 'block';
+      iframe.focus();
+    }
+    function removeDemo(){ const demoFrameWrap = document.getElementById('demoFrameWrap'); demoFrameWrap.innerHTML=''; document.getElementById('demoWrap').style.display='none'; }
+
+    // ========== buy flow ==========
+    const buyModal = document.getElementById('buyModal');
+    const buyForm = document.getElementById('buyForm');
+    let pendingProduct = null;
+
+    function quickBuy(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      pendingProduct = p;
+      document.getElementById('buyProduct').textContent = p.title;
+      document.getElementById('buyPrice').value = p.price.toFixed(2);
+      document.getElementById('buyPriceLabel').textContent = p.price.toFixed(2);
+      document.getElementById('receiptWrap').style.display = 'none';
+      document.getElementById('receiptArea').innerHTML = '';
+      buyModal.classList.add('show'); buyModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    }
+    function closeBuy(){ buyModal.classList.remove('show'); buyModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; pendingProduct = null; }
+
+    // update label when price changed
+    document.getElementById('buyPrice').addEventListener('input', e=> { const v=parseFloat(e.target.value)||0; document.getElementById('buyPriceLabel').textContent = v.toFixed(2); });
+
+    buyForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      // validate
+      const email = document.getElementById('buyerEmail').value.trim();
+      const price = parseFloat(document.getElementById('buyPrice').value) || 0;
+      if(!email || price <= 0){ alert('Please enter a valid email and price.'); return; }
+      // Simulate payment processing
+      document.querySelector('#buyForm button[type="submit"]').textContent = 'Processing...';
+      setTimeout(()=> {
+        document.querySelector('#buyForm button[type="submit"]').textContent = 'Pay';
+        // show receipt
+        const rid = 'ND-' + Math.random().toString(36).slice(2,9).toUpperCase();
+        const html = `
+          <div><strong>Receipt ID:</strong> ${rid}</div>
+          <div><strong>Product:</strong> ${pendingProduct.title}</div>
+          <div><strong>Amount (USD):</strong> $${price.toFixed(2)}</div>
+          <div><strong>Billed to:</strong> ${email}</div>
+          <div style="margin-top:8px;color:var(--muted)">A download link is available below. For customizations contact sales.</div>
+        `;
+        document.getElementById('receiptArea').innerHTML = html;
+        document.getElementById('receiptWrap').style.display = 'block';
+        // store download info (in demo store in-memory)
+        document.getElementById('downloadBtn').onclick = ()=> {
+          // In production, this would give a secure expiring link. For demo we simulate with a data URL or the demo path.
+          const dl = `/downloads/${pendingProduct.id}.zip`;
+          alert(`Simulating download: ${dl}\n(Replace with real secure download link in production.)`);
+        };
+      }, 1100);
+    });
+
+    // ========== upload/publish/contact placeholders ==========
+    function openUpload(){ alert('To publish an app, contact apps@newdichtechnology.com.'); }
+    function openContact(){ alert('Contact sales at sales@newdichtechnology.com or call +2348001234567'); }
+
+    // chat
+    function openChat(){ window.open('https://wa.me/?text=Hi%20Newdich%20Support%20I%20need%20help%20with%20a%20software', '_blank'); }
+
+    // close detail modal on background click / escape
+    detailModal.addEventListener('click', e=> { if(e.target === detailModal) closeDetail(); });
+    buyModal.addEventListener('click', e=> { if(e.target === buyModal) closeBuy(); });
+    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeDetail(); closeBuy(); } });
+
+    // initial render call is above
+  </script>
+</body>
+</html>
