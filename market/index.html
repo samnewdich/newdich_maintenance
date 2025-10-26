@@ -144,18 +144,21 @@
           <input id="search" type="search" placeholder="Search apps, features or categories">
         </div>
 
-        <div id="filterChips" style="display:flex;gap:8px">
-          <button class="chip active" data-filter="all">All</button>
-          <button class="chip" data-filter="enterprise">Enterprise</button>
-          <button class="chip" data-filter="saas">SaaS</button>
-        </div>
+        <span class="hide-on-mobile">
+            <div id="filterChips" style="display:flex;gap:8px">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="enterprise">Enterprise</button>
+            <button class="chip" data-filter="saas">SaaS</button>
+            </div>
 
-        <select id="sort" class="sort" title="Sort apps">
-          <option value="popular">Most popular</option>
-          <option value="newest">Newest</option>
-          <option value="price_low">Price: Low → High</option>
-          <option value="price_high">Price: High → Low</option>
-        </select>
+            <select id="sort" class="sort" title="Sort apps">
+            <option value="popular">Most popular</option>
+            <option value="newest">Newest</option>
+            <option value="price_low">Price: Low → High</option>
+            <option value="price_high">Price: High → Low</option>
+            </select>
+        </span>
+
       </nav>
     </div>
   </header>
